@@ -1,0 +1,159 @@
+{
+  "bh packages": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "customer name": {
+        "Type": "varchar(100)",
+        "Null": "NO"
+      },
+      "email": {
+        "Type": "varchar(100)",
+        "Null": "NO"
+      },
+      "auto generated status": {
+        "Type": "bigint(20) unsigned"
+      },
+      "auto sent status": {
+        "Type": "bigint(20) unsigned"
+      },
+      "date": {
+        "Type": "date"
+      },
+      "total": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "bh transactions": "package id"
+    },
+    "table_links": {
+      "Form": "/extension_for_bh_packages/form/"
+    }
+  },
+  "bh services": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "bh transactions": "services id"
+    },
+    "table_links": {
+      "Report": "/extension_for_bh_services/report/"
+    }
+  },
+  "bh transactions": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "services id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "package id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "quantity (days)": {
+        "Type": "bigint(20) unsigned"
+      },
+      "date": {
+        "Type": "date"
+      },
+      "price": {
+        "Type": "bigint(20)",
+        "Null": "NO"
+      }
+    }
+  },
+  "groups": {
+    "fields": {
+      "id": {
+        "Type": "mediumint(8) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "name": {
+        "Type": "varchar(20)",
+        "Null": "NO",
+        "important_field": ""
+      },
+      "description": {
+        "Type": "varchar(100)",
+        "Null": "NO"
+      },
+      "group_id": {
+        "Type": "mediumint(8) unsigned"
+      }
+    },
+    "items": {
+      "groups": "group_id",
+      "users_groups": "group_id"
+    }
+  },
+  "users": {
+    "fields": {
+      "id": {
+        "Type": "int(11) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "first_name": {
+        "Type": "varchar(50)",
+        "important_field": ""
+      },
+      "last_name": {
+        "Type": "varchar(50)",
+        "important_field": ""
+      },
+      "email": {
+        "Type": "varchar(254)",
+        "Null": "NO",
+        "Key": "UNI"
+      }
+    },
+    "items": {
+      "users_groups": "user_id"
+    }
+  },
+  "users_groups": {
+    "fields": {
+      "id": {
+        "Type": "int(11) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "user_id": {
+        "Type": "int(11) unsigned",
+        "Null": "NO",
+        "Key": "MUL"
+      },
+      "group_id": {
+        "Type": "mediumint(8) unsigned",
+        "Null": "NO",
+        "Key": "MUL"
+      }
+    }
+  }
+}

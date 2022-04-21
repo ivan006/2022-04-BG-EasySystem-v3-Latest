@@ -1,0 +1,359 @@
+{
+  "EL User":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "profile_name":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "full_name":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "profile_url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "profile_image":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    },
+    "items":{
+      "EL Enrolment":"user_id",
+      "EL InstitutionMembership":"user_id",
+      "EL ClassAllocation":"learnerId"
+    }
+  },
+  "EL Course":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "title":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "image":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "self_paced":{
+        "Type": "bigint(20) unsigned"
+      },
+      "price":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "institution_id": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items":{
+      "EL Enrolment":"course_id",
+      "EL Classes":"course_id",
+      "EL XAPI-Integrations":"course_id"
+    }
+  },
+  "EL ClassAllocation":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "class_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "learnerId":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "learnerEmail":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  },
+  "EL Classes":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "title":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "created_by":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "course_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    },
+    "items":{
+      "EL Enrolment":"class_id",
+      "EL ClassAllocation":"class_id",
+      "EL Results":"class_id"
+    }
+  },
+  "EL Enrolment":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "course_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "external_enrolment_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "class_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "user_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "certificate_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  },
+  "EL Results":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "report_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "user":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "outcome_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "criterion_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "block_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "grade_category":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "last_modified":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "assessor_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "class_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  },
+  "EL Report":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "description":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  },
+  "EL RubricEvaluation":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "name":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "description":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "weight":{
+        "Type": "bigint(20) unsigned"
+      }
+    }
+  },
+  "EL Institution":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "name":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    },
+    "items":{
+      "EL Course": "institution_id"
+    }
+  },
+  "EL InstitutionMembership":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "external_institution_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "user_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "institution_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "role":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  },
+  "EL XAPI-Integrations":{
+    "fields":{
+      "id":{
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "EL id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "course_id":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "name":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "key":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "secret":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "rest_hooks_url":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      }
+    }
+  }
+}

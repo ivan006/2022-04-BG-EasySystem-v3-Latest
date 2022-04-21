@@ -1,0 +1,98 @@
+{
+  "ES Integration engines":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "name":{
+        "Type":"text"
+      }
+    },
+    "items":{
+      "ES Messages":"ES Integration engine"
+    },
+    "record_links":{
+      "Report":"/Extension_ES_Form_c/"
+    }
+  },
+  "ES Messages":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "date":{
+        "Type":"datetime"
+      },
+      "ES Integration engine":{
+        "Type":"bigint(20) unsigned"
+      },
+      "method":{
+        "Type":"text"
+      },
+      "connection":{
+        "Type":"text"
+      },
+      "subject":{
+        "Type":"text"
+      },
+      "verb":{
+        "Type":"text"
+      },
+      "object":{
+        "Type":"text"
+      },
+      "debug_initiator" :{
+        "Type":"text"
+      },
+      "debug_status" :{
+        "Type":"text"
+      },
+      "debug_status_details" :{
+        "Type":"text"
+      },
+      "debug_message"  :{
+        "Type":"text"
+      },
+      "debug_reply" :{
+        "Type":"text"
+      }
+    }
+  },
+  "IMS Connections":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "connection":{
+        "Type":"text"
+      },
+      "access_token":{
+        "Type":"text"
+      },
+      "refresh_token":{
+        "Type":"text"
+      },
+      "auth_token":{
+        "Type":"text"
+      },
+      "expired_in":{
+        "Type":"text"
+      },
+      "date": {
+        "Type": "datetime"
+      }
+    }
+  }
+}

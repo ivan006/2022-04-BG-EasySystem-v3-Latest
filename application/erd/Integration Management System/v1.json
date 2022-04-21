@@ -1,0 +1,75 @@
+{
+  "IMS Messages":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "direction":{
+        "Type":"text"
+      },
+      "status":{
+        "Type":"text"
+      },
+      "receiver":{
+        "Type":"text"
+      },
+      "date":{
+        "Type":"timestamp"
+      },
+      "sender":{
+        "Type":"text"
+      },
+      "message":{
+        "Type":"text"
+      },
+      "reply":{
+        "Type":"text"
+      },
+      "status_details":{
+        "Type":"text"
+      },
+      "IMS Message":{
+        "Type":"bigint(20) unsigned"
+      }
+    },
+    "items":{
+      "IMS Messages": "IMS Message"
+    },
+    "record_links": {
+      "Auto - Connect": "http://red.bluegemify.co.za/?record="
+    }
+  },
+  "IMS Connections":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "destination":{
+        "Type":"text"
+      },
+      "access_token":{
+        "Type":"text"
+      },
+      "refresh_token":{
+        "Type":"text"
+      },
+      "auth_token":{
+        "Type":"text"
+      },
+      "expired_in":{
+        "Type":"text"
+      },
+      "date":{
+        "Type":"timestamp"
+      }
+    }
+  }
+}

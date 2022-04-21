@@ -1,0 +1,238 @@
+{
+  "commodity type": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "invoice": "commodity type id"
+    }
+  },
+  "commodity unit": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "invoice": "commodity unit id"
+    }
+  },
+  "statement": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "organisation id": {
+        "Type": "bigint(20) unsigned",
+        "important_field": ""
+      },
+      "auto generated status": {
+        "Type": "bigint(20) unsigned"
+      },
+      "auto sent status": {
+        "Type": "bigint(20) unsigned"
+      },
+      "date": {
+        "Type": "date"
+      },
+      "total": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "stated invoice": "statement id"
+    },
+    "record_links": {
+      "Auto - Populate": "/extension_for_statement/auto_generate/",
+      "Report": "/extension_for_statement/report/",
+      "Auto - Email": "/extension_for_statement/auto_email/"
+    }
+  },
+  "stated invoice": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "outstanding": {
+        "Type": "bigint(20) unsigned"
+      },
+      "invoice id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "statement id": {
+        "Type": "bigint(20) unsigned"
+      }
+    }
+  },
+  "organisation": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      },
+      "organisation type id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "email": {
+        "Type": "varchar(100)",
+        "Null": "NO"
+      }
+    },
+    "items": {
+      "invoice": "counterparty id",
+      "statement": "organisation id"
+    }
+  },
+  "organisation type": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "organisation": "organisation type id"
+    }
+  },
+  "products": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      },
+      "pieces": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "invoice": "products id"
+    }
+  },
+  "services": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "invoice": "services id"
+    }
+  },
+  "invoice": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "invoice type id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "commodity type id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "services id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "products id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "commodity unit id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "quantity": {
+        "Type": "bigint(20) unsigned"
+      },
+      "counterparty id": {
+        "Type": "bigint(20) unsigned"
+      },
+      "date": {
+        "Type": "date"
+      },
+      "price": {
+        "Type": "bigint(20)",
+        "Null": "NO"
+      },
+      "paid": {
+        "Type": "bigint(20)",
+        "Null": "NO"
+      }
+    },
+    "items": {
+      "stated invoice": "invoice id"
+    }
+  },
+  "invoice type": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "invoice": "invoice type id"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "ET Objects":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Name":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "ET Experiences":"Object"
+    }
+  },
+  "ET Verbs":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Name":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "ET Experiences":"Verb"
+    }
+  },
+  "ET Experiences":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Object":{
+        "Type":"bigint(20) unsigned"
+      },
+      "Verb":{
+        "Type":"bigint(20) unsigned"
+      },
+      "Subject":{
+        "Type":"bigint(20) unsigned"
+      },
+      "Date":{
+        "Type":"varchar(255)",
+        "Null":"NO"
+      }
+    }
+  },
+  "groups":{
+    "fields":{
+      "id":{
+        "Type":"mediumint(8) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment",
+        "important_field":""
+      },
+      "name":{
+        "Type":"varchar(20)",
+        "Null":"NO",
+        "important_field":""
+      },
+      "description":{
+        "Type":"varchar(100)",
+        "Null":"NO"
+      },
+      "group_id":{
+        "Type":"mediumint(8) unsigned"
+      }
+    },
+    "items":{
+      "groups":"group_id",
+      "users_groups":"group_id"
+    }
+  },
+  "users":{
+    "fields":{
+      "id":{
+        "Type":"int(11) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "first_name":{
+        "Type":"varchar(50)",
+        "important_field":""
+      },
+      "last_name":{
+        "Type":"varchar(50)"
+      },
+      "email":{
+        "Type":"varchar(254)",
+        "Null":"NO",
+        "Key":"UNI"
+      }
+    },
+    "items":{
+      "users_groups":"user_id",
+      "ET Experiences":"Subject"
+    }
+  },
+  "users_groups":{
+    "fields":{
+      "id":{
+        "Type":"int(11) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "user_id":{
+        "Type":"int(11) unsigned",
+        "Null":"NO",
+        "Key":"MUL"
+      },
+      "group_id":{
+        "Type":"mediumint(8) unsigned",
+        "Null":"NO",
+        "Key":"MUL"
+      }
+    }
+  }
+}
