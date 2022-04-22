@@ -1,4 +1,22 @@
 {
+  "ET Projects":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Name":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "ET Experiences":"Project"
+    }
+  },
   "ET Objects":{
     "fields":{
       "id":{
@@ -17,7 +35,7 @@
       "ET Experiences":"Object"
     }
   },
-  "ET Verbs":{
+  "ET Processes":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
@@ -32,7 +50,43 @@
       }
     },
     "items":{
-      "ET Experiences":"Verb"
+      "ET Experiences":"Process"
+    }
+  },
+  "ET People":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Name":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "ET Experiences":"Person"
+    }
+  },
+  "ET Places":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Name":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "ET Experiences":"Place"
     }
   },
   "ET Experiences":{
@@ -43,91 +97,32 @@
         "Key":"PRI",
         "Extra":"auto_increment"
       },
+      "Project":{
+        "Type":"bigint(20) unsigned"
+      },
       "Object":{
         "Type":"bigint(20) unsigned"
       },
-      "Verb":{
+      "Process":{
         "Type":"bigint(20) unsigned"
       },
-      "Subject":{
-        "Type":"bigint(20) unsigned"
-      },
-      "Date":{
+      "Occasion":{
         "Type":"varchar(255)",
         "Null":"NO"
-      }
-    }
-  },
-  "groups":{
-    "fields":{
-      "id":{
-        "Type":"mediumint(8) unsigned",
-        "Null":"NO",
-        "Key":"PRI",
-        "Extra":"auto_increment",
-        "important_field":""
       },
-      "name":{
-        "Type":"varchar(20)",
-        "Null":"NO",
-        "important_field":""
+      "Person":{
+        "Type":"bigint(20) unsigned"
       },
-      "description":{
-        "Type":"varchar(100)",
+      "Place":{
+        "Type":"bigint(20) unsigned"
+      },
+      "Price":{
+        "Type":"varchar(255)",
         "Null":"NO"
       },
-      "group_id":{
-        "Type":"mediumint(8) unsigned"
-      }
-    },
-    "items":{
-      "groups":"group_id",
-      "users_groups":"group_id"
-    }
-  },
-  "users":{
-    "fields":{
-      "id":{
-        "Type":"int(11) unsigned",
-        "Null":"NO",
-        "Key":"PRI",
-        "Extra":"auto_increment"
-      },
-      "first_name":{
-        "Type":"varchar(50)",
-        "important_field":""
-      },
-      "last_name":{
-        "Type":"varchar(50)"
-      },
-      "email":{
-        "Type":"varchar(254)",
-        "Null":"NO",
-        "Key":"UNI"
-      }
-    },
-    "items":{
-      "users_groups":"user_id",
-      "ET Experiences":"Subject"
-    }
-  },
-  "users_groups":{
-    "fields":{
-      "id":{
-        "Type":"int(11) unsigned",
-        "Null":"NO",
-        "Key":"PRI",
-        "Extra":"auto_increment"
-      },
-      "user_id":{
-        "Type":"int(11) unsigned",
-        "Null":"NO",
-        "Key":"MUL"
-      },
-      "group_id":{
-        "Type":"mediumint(8) unsigned",
-        "Null":"NO",
-        "Key":"MUL"
+      "Comment":{
+        "Type":"varchar(255)",
+        "Null":"NO"
       }
     }
   }
