@@ -14,7 +14,7 @@
       }
     },
     "items":{
-      "ET Experiences":"Project"
+      "ET Occurrences":"Project"
     }
   },
   "ET Objects":{
@@ -32,7 +32,7 @@
       }
     },
     "items":{
-      "ET Experiences":"Object"
+      "ET Occurrences":"Object"
     }
   },
   "ET Processes":{
@@ -50,7 +50,7 @@
       }
     },
     "items":{
-      "ET Experiences":"Process"
+      "ET Occurrences":"Process"
     }
   },
   "ET People":{
@@ -68,7 +68,7 @@
       }
     },
     "items":{
-      "ET Experiences":"Person"
+      "ET Occurrences":"Person"
     }
   },
   "ET Places":{
@@ -86,10 +86,10 @@
       }
     },
     "items":{
-      "ET Experiences":"Place"
+      "ET Occurrences":"Place"
     }
   },
-  "ET Experiences":{
+  "ET Occurrences":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
