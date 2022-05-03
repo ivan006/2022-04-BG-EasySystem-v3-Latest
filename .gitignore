@@ -36,3 +36,6 @@ application/Extension_ES_Integration_engines/sendinblue_mautic_prod.json
 application/Extension_ES_Integration_engines/sendinblue_mautic_staging.json
 application/Extension_ES_Integration_engines/zoho_production.json
 application/Extension_ES_Integration_engines/zoho_stage.json
+
+/old/
+system/libraries/Session/drivers/Session_files_driver_new.php
