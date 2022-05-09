@@ -1,37 +1,237 @@
 {
-    "_activity_log": {
+    "_sys_export": {
         "fields": {
             "id": {
-                "Type": "mediumint(8) unsigned",
+                "Type": "int(11)",
                 "Null": "NO",
                 "Key": "PRI",
                 "Extra": "auto_increment"
             },
-            "record_table_and_id": {
-                "Type": "varchar(255)",
+            "export_key": {
+                "Type": "varchar(128)"
+            },
+            "filepath": {
+                "Type": "varchar(256)"
+            },
+            "right_id": {
+                "Type": "int(11)"
+            },
+            "permission_key": {
+                "Type": "varchar(128)"
+            }
+        }
+    },
+    "_sys_language": {
+        "fields": {
+            "id": {
+                "Type": "int(10) unsigned",
                 "Null": "NO",
-                "Key": "UNI"
+                "Key": "PRI",
+                "Extra": "auto_increment"
             },
-            "timestamp": {
-                "Type": "datetime",
-                "Null": "NO"
+            "name": {
+                "Type": "varchar(255)"
             },
-            "last_activity_type": {
-                "Type": "varchar(255)",
-                "Null": "NO"
+            "shortkey": {
+                "Type": "varchar(10)"
             },
-            "owner": {
+            "language_fallback_id": {
+                "Type": "int(10) unsigned"
+            },
+            "sort": {
+                "Type": "int(11)"
+            },
+            "is_public": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            },
+            "is_translatable": {
+                "Type": "tinyint(1)",
+                "Null": "NO",
+                "Default": "0"
+            },
+            "is_deleted": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            },
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            }
+        }
+    },
+    "_sys_language_string": {
+        "fields": {
+            "id": {
                 "Type": "int(11)",
                 "Null": "NO",
-                "Default": "2"
+                "Key": "PRI",
+                "Extra": "auto_increment"
             },
-            "editability": {
-                "Type": "varchar(2)",
+            "lang_shortkey": {
+                "Type": "varchar(10)",
                 "Null": "NO"
             },
-            "visibility": {
-                "Type": "varchar(2)",
+            "lang_key": {
+                "Type": "varchar(512)",
                 "Null": "NO"
+            },
+            "lang_text": {
+                "Type": "text"
+            },
+            "is_deleted": {
+                "Type": "int(1)",
+                "Null": "NO",
+                "Default": "0"
+            },
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            }
+        }
+    },
+    "_sys_navi": {
+        "fields": {
+            "id": {
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "position": {
+                "Type": "int(11)",
+                "Default": "0"
+            },
+            "is_active": {
+                "Type": "tinyint(1)",
+                "Default": "1"
+            },
+            "sys_page_id": {
+                "Type": "int(11)"
+            },
+            "parent_id": {
+                "Type": "int(10) unsigned"
+            },
+            "right_id": {
+                "Type": "int(11)"
+            },
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            },
+            "icon": {
+                "Type": "varchar(255)"
+            },
+            "is_deleted": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            },
+            "template_page_key": {
+                "Type": "varchar(128)"
+            },
+            "has_user_content": {
+                "Type": "tinyint(1)"
+            },
+            "is_nonclickable_parent": {
+                "Type": "tinyint(1)"
+            },
+            "permission_key": {
+                "Type": "varchar(128)"
+            }
+        }
+    },
+    "_sys_page": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "page_name": {
+                "Type": "varchar(64)"
+            },
+            "page_filepath": {
+                "Type": "varchar(512)"
+            },
+            "sys_right_id": {
+                "Type": "int(11)"
+            },
+            "template_filename": {
+                "Type": "varchar(256)"
+            },
+            "permission_key": {
+                "Type": "varchar(128)"
+            }
+        }
+    },
+    "_sys_right": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "right_key": {
+                "Type": "char(64)",
+                "Key": "UNI"
+            },
+            "description": {
+                "Type": "char(255)"
+            },
+            "right_name": {
+                "Type": "char(64)"
+            },
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            }
+        }
+    },
+    "_sys_right_group": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "name": {
+                "Type": "char(64)"
+            },
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            },
+            "right_key": {
+                "Type": "varchar(128)"
+            }
+        }
+    },
+    "_sys_right_group_has_right": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "group_id": {
+                "Type": "int(11)"
+            },
+            "right_id": {
+                "Type": "int(11)"
             }
         }
     },
@@ -462,11 +662,11 @@
                 "Extra": "auto_increment"
             },
             "contact_person_id": {
-                "Type": "int(11)",
+                "Type": "bigint(20)",
                 "Key": "MUL"
             },
             "contact_company_id": {
-                "Type": "int(11)",
+                "Type": "bigint(20)",
                 "Key": "MUL"
             },
             "is_main_address": {
@@ -540,16 +740,13 @@
                 "Type": "varchar(255)"
             },
             "contact_information_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "main_phone_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned"
             },
             "main_email_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned"
             },
             "pgp_public_key": {
                 "Type": "text"
@@ -590,8 +787,7 @@
                 "Extra": "auto_increment"
             },
             "contact_sync_account_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "contact_id": {
                 "Type": "bigint(20)"
@@ -831,20 +1027,16 @@
                 "Type": "text"
             },
             "contact_company_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "contact_information_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "main_phone_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned"
             },
             "main_email_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned"
             },
             "birthdate": {
                 "Type": "date"
@@ -1034,14 +1226,14 @@
     "contact_sync_initial_setup": {
         "fields": {
             "id": {
-                "Type": "bigint(20)",
+                "Type": "bigint(20) unsigned",
                 "Null": "NO",
                 "Key": "PRI",
                 "Extra": "auto_increment"
             },
             "contact_sync_account_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned",
+                "Null": "NO"
             },
             "json_initial": {
                 "Type": "longtext",
@@ -1085,8 +1277,7 @@
                 "Null": "NO"
             },
             "contact_sync_account_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "bigint(20) unsigned"
             },
             "update_type": {
                 "Type": "enum('UPDATE','DELETE','INSERT','INACTIVE','INIT_DELETE','INIT_MOVE','INIT_MISMATCH','INIT_REMAIN')"
@@ -1364,8 +1555,7 @@
                 "Type": "enum('RUNNING','STOPPED','REQUESTED','RESERVED')"
             },
             "reserved_by": {
-                "Type": "varchar(255)",
-                "Key": "MUL"
+                "Type": "varchar(255)"
             },
             "last_successful_run_at": {
                 "Type": "datetime"
@@ -1403,17 +1593,26 @@
     },
     "currency": {
         "fields": {
-            "iso": {
-                "Type": "varchar(3)",
+            "id": {
+                "Type": "int(11)",
                 "Null": "NO",
-                "Key": "PRI"
+                "Key": "PRI",
+                "Extra": "auto_increment"
             },
             "name": {
+                "Type": "char(64)"
+            },
+            "iso": {
                 "Type": "varchar(128)"
             },
-            "is_outdated": {
+            "creation_date": {
+                "Type": "datetime"
+            },
+            "modified_date": {
+                "Type": "datetime"
+            },
+            "is_deleted": {
                 "Type": "tinyint(1)",
-                "Null": "NO",
                 "Default": "0"
             }
         }
@@ -1523,64 +1722,7 @@
             }
         }
     },
-    "currency_exchange_rate_daily_test": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "currency_iso": {
-                "Type": "varchar(3)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "rate": {
-                "Type": "decimal(14,6)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "rate_date": {
-                "Type": "date",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "created_at": {
-                "Type": "datetime",
-                "Null": "NO"
-            }
-        }
-    },
     "currency_exchange_rate_log": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "status": {
-                "Type": "varchar(20)"
-            },
-            "type": {
-                "Type": "varchar(128)"
-            },
-            "options": {
-                "Type": "text"
-            },
-            "result": {
-                "Type": "text"
-            },
-            "error": {
-                "Type": "text"
-            },
-            "created_at": {
-                "Type": "datetime"
-            }
-        }
-    },
-    "currency_exchange_rate_log_test": {
         "fields": {
             "id": {
                 "Type": "int(11)",
@@ -1647,7 +1789,7 @@
             }
         }
     },
-    "currency_exchange_rate_test": {
+    "dashboard_widget": {
         "fields": {
             "id": {
                 "Type": "int(11)",
@@ -1655,55 +1797,11 @@
                 "Key": "PRI",
                 "Extra": "auto_increment"
             },
-            "currency_iso": {
-                "Type": "varchar(3)",
-                "Null": "NO",
-                "Key": "MUL"
+            "settings": {
+                "Type": "text"
             },
-            "rate": {
-                "Type": "decimal(14,6)"
-            },
-            "month": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "year": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "days_used_for_average": {
-                "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime"
-            },
-            "modified_at": {
-                "Type": "datetime",
-                "Extra": "on update current_timestamp()"
-            }
-        }
-    },
-    "currency_used": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "currency_iso": {
-                "Type": "varchar(3)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "created_at": {
-                "Type": "datetime"
-            },
-            "modified_at": {
-                "Type": "datetime",
-                "Extra": "on update current_timestamp()"
+            "type": {
+                "Type": "varchar(255)"
             }
         }
     },
@@ -1752,8 +1850,7 @@
                 "Default": "0"
             },
             "development_schedule_snapshot_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             }
         }
     },
@@ -2145,17 +2242,17 @@
                 "Key": "MUL"
             },
             "franchise_agreement_segment_type_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             }
         }
     },
     "franchise_agreement_segment_type": {
         "fields": {
             "id": {
-                "Type": "int(11)",
+                "Type": "int(11) unsigned",
                 "Null": "NO",
-                "Key": "PRI"
+                "Key": "PRI",
+                "Extra": "auto_increment"
             },
             "name": {
                 "Type": "varchar(64)"
@@ -2341,8 +2438,7 @@
                 "Type": "text"
             },
             "meta_data": {
-                "Type": "text",
-                "Key": "MUL"
+                "Type": "text"
             }
         }
     },
@@ -2398,6 +2494,180 @@
             "office_id": {
                 "Type": "int(11)",
                 "Key": "MUL"
+            },
+            "team_id": {
+                "Type": "int(11)",
+                "Key": "MUL"
+            },
+            "transaction_date": {
+                "Type": "date",
+                "Key": "MUL"
+            },
+            "listing_residential_transaction_sale_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_residential_transaction_rental_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "residential_selling_transaction_rental_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "residential_selling_transaction_sale_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "residential_selling_rental_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "residential_selling_sale_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_residential_rental_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_residential_sale_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_commercial_transaction_sale_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_commercial_transaction_rental_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commercial_selling_transaction_rental_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commercial_selling_transaction_sale_amount": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commercial_selling_rental_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commercial_selling_sale_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_commercial_rental_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "listing_commercial_sale_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commission_residential_sale": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commission_residential_rental": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commission_commercial_sale": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "commission_commercial_rental": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "referral": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "financial_mortgage": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "other": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "sum_volume": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "sum_commission": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "sum_transaction": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "sum_other_income": {
+                "Type": "decimal(16,2)",
+                "Null": "NO",
+                "Default": "0.00"
+            },
+            "rate_eur": {
+                "Type": "decimal(14,6)"
+            },
+            "rate_rxd": {
+                "Type": "decimal(12,6)"
+            },
+            "rate_person_currency": {
+                "Type": "double"
+            },
+            "is_deleted": {
+                "Type": "tinyint(1)",
+                "Null": "NO",
+                "Default": "0"
+            }
+        }
+    },
+    "listing_transaction_copy": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "person_id": {
+                "Type": "bigint(20)",
+                "Key": "MUL"
+            },
+            "office_id": {
+                "Type": "int(11)"
             },
             "team_id": {
                 "Type": "int(11)",
@@ -2713,12 +2983,6 @@
             "personal_currency": {
                 "Type": "varchar(3)"
             },
-            "password_recovery_token": {
-                "Type": "varchar(255)"
-            },
-            "password_recovery_token_date": {
-                "Type": "datetime"
-            },
             "created_at": {
                 "Type": "datetime",
                 "Null": "NO"
@@ -2821,146 +3085,6 @@
             "relation_id": {
                 "Type": "bigint(20)",
                 "Key": "MUL"
-            }
-        }
-    },
-    "module_demo_page": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "add_textfield": {
-                "Type": "varchar(255)"
-            },
-            "add_decimal": {
-                "Type": "decimal(16,2)"
-            },
-            "add_date_valid_from": {
-                "Type": "date"
-            },
-            "add_date_valid_to": {
-                "Type": "date"
-            },
-            "add_dropdown_entry_id": {
-                "Type": "int(11)"
-            },
-            "add_checkbox": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            },
-            "add_radiobutton": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            },
-            "created_at": {
-                "Type": "datetime",
-                "Null": "NO"
-            },
-            "modified_at": {
-                "Type": "datetime"
-            },
-            "is_deleted": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            }
-        }
-    },
-    "module_demo_page_action": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "module_demo_page_id": {
-                "Type": "int(11)"
-            },
-            "action_title": {
-                "Type": "varchar(255)"
-            },
-            "action_decimal": {
-                "Type": "decimal(16,2)"
-            },
-            "action_date_valid_from": {
-                "Type": "date"
-            },
-            "action_date_valid_to": {
-                "Type": "date"
-            },
-            "action_dropdown_entry_id": {
-                "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime",
-                "Null": "NO"
-            },
-            "modified_at": {
-                "Type": "datetime"
-            },
-            "is_deleted": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            }
-        }
-    },
-    "module_demo_page_dropdown_entry": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "name": {
-                "Type": "varchar(255)"
-            },
-            "created_at": {
-                "Type": "datetime",
-                "Null": "NO"
-            },
-            "modified_at": {
-                "Type": "datetime"
-            },
-            "is_deleted": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            }
-        }
-    },
-    "module_demo_page_has_dropdown_entry": {
-        "fields": {
-            "id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "module_demo_page_id": {
-                "Type": "int(11)"
-            },
-            "module_demo_page_dropdown_entry_id": {
-                "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime",
-                "Null": "NO"
-            },
-            "modified_at": {
-                "Type": "datetime"
-            },
-            "is_deleted": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
             }
         }
     },
@@ -3149,8 +3273,7 @@
                 "Key": "UNI"
             },
             "office_level_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "linkedin": {
                 "Type": "varchar(255)"
@@ -3183,16 +3306,14 @@
                 "Key": "MUL"
             },
             "contact_information_id": {
-                "Type": "bigint(20)",
+                "Type": "int(11)",
                 "Key": "MUL"
             },
             "main_phone_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "main_email_contact_information_entry_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "awards_rankings_excluded": {
                 "Type": "tinyint(1)",
@@ -3542,183 +3663,6 @@
             }
         }
     },
-    "office_franchise_contract_copy": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "office_id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "region_id": {
-                "Type": "int(11)",
-                "Null": "NO",
-                "Key": "MUL"
-            },
-            "contract_title": {
-                "Type": "varchar(255)"
-            },
-            "contract_subtitle": {
-                "Type": "varchar(255)"
-            },
-            "contract_document_storage_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "license_date": {
-                "Type": "date"
-            },
-            "renewal_date": {
-                "Type": "date"
-            },
-            "term": {
-                "Type": "decimal(5,2)"
-            },
-            "first_agreement_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "current_agreement_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "renewal_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "fees_paid_date": {
-                "Type": "date"
-            },
-            "office_franchise_contract_agreement_segment_history_id": {
-                "Type": "int(11)"
-            },
-            "franchise_agreement_segment_type_id": {
-                "Type": "int(11)"
-            },
-            "actual_franchise_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "actual_payed_to_reu": {
-                "Type": "decimal(20,2)"
-            },
-            "actual_payed_to_reu_date": {
-                "Type": "date"
-            },
-            "payment_accepted": {
-                "Type": "tinyint(1)",
-                "Null": "NO",
-                "Default": "0"
-            },
-            "payment_accepted_date": {
-                "Type": "date"
-            },
-            "payment_accepted_reason": {
-                "Type": "varchar(512)"
-            },
-            "first_opening_date": {
-                "Type": "date"
-            },
-            "actual_opening_date": {
-                "Type": "date"
-            },
-            "fee_according_to_rfa": {
-                "Type": "decimal(20,2)"
-            },
-            "fee_according_to_reu": {
-                "Type": "decimal(20,2)"
-            },
-            "has_individual_current_fee": {
-                "Type": "tinyint(1)"
-            },
-            "has_individual_renewal_fee": {
-                "Type": "tinyint(1)"
-            },
-            "individual_current_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "individual_renewal_fee": {
-                "Type": "decimal(20,2)"
-            },
-            "notice_to_actual_franchise_and_reu_fee": {
-                "Type": "varchar(512)"
-            },
-            "actual_franchise_fee_date": {
-                "Type": "date"
-            },
-            "signed_date": {
-                "Type": "date"
-            },
-            "fee_percentage_to_europe": {
-                "Type": "decimal(20,2)"
-            },
-            "account_manager_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "stored_franchise_agreement_fees": {
-                "Type": "varchar(1020)"
-            },
-            "contract_received_date": {
-                "Type": "date"
-            },
-            "contract_is_ok": {
-                "Type": "tinyint(1)"
-            },
-            "contract_is_ok_date": {
-                "Type": "date"
-            },
-            "contract_processed_date": {
-                "Type": "date"
-            },
-            "contract_send_to_llc_date": {
-                "Type": "date"
-            },
-            "comments_by_reu": {
-                "Type": "varchar(4096)"
-            },
-            "b1_form_is_received": {
-                "Type": "tinyint(1)"
-            },
-            "b1_form_is_received_date": {
-                "Type": "date"
-            },
-            "person_annual_dues": {
-                "Type": "decimal(20,2)"
-            },
-            "person_annual_dues_percentage_to_europe": {
-                "Type": "decimal(20,2)"
-            },
-            "comment_to_annual_dues_fees": {
-                "Type": "varchar(512)"
-            },
-            "payment_currency_iso": {
-                "Type": "varchar(3)"
-            },
-            "historized_reason": {
-                "Type": "tinyint(1)",
-                "Default": "0"
-            },
-            "on_hold_comment": {
-                "Type": "varchar(4096)"
-            },
-            "office_close_date": {
-                "Type": "date"
-            },
-            "transfered_contract": {
-                "Type": "tinyint(1)",
-                "Default": "0"
-            },
-            "is_migrated": {
-                "Type": "tinyint(1)",
-                "Default": "0"
-            },
-            "comment_time_gap": {
-                "Type": "varchar(255)"
-            }
-        }
-    },
     "office_has_company": {
         "fields": {
             "id": {
@@ -3860,8 +3804,7 @@
                 "Type": "int(11)"
             },
             "relation_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "valid_from": {
                 "Type": "date"
@@ -4093,16 +4036,14 @@
             },
             "firstname": {
                 "Type": "varchar(255)",
-                "Null": "NO",
-                "Key": "MUL"
+                "Null": "NO"
             },
             "full_local_name": {
                 "Type": "varchar(512)"
             },
             "lastname": {
                 "Type": "varchar(255)",
-                "Null": "NO",
-                "Key": "MUL"
+                "Null": "NO"
             },
             "title": {
                 "Type": "varchar(45)"
@@ -4344,12 +4285,10 @@
                 "Default": "0"
             },
             "person_annual_dues_action_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "person_annual_dues_comment_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "action_order": {
                 "Type": "int(11)",
@@ -4467,8 +4406,7 @@
                 "Type": "varchar(255)"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_name": {
                 "Type": "varchar(255)"
@@ -4701,20 +4639,6 @@
             "designation_id": {
                 "Type": "int(11)",
                 "Key": "MUL"
-            }
-        }
-    },
-    "person_has_exchange_id": {
-        "fields": {
-            "person_id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Default": "0"
-            },
-            "exchange_id": {
-                "Type": "varchar(255)",
-                "Null": "NO"
             }
         }
     },
@@ -5030,6 +4954,102 @@
             }
         }
     },
+    "project_time": {
+        "fields": {
+            "id": {
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "date": {
+                "Type": "date"
+            },
+            "start_time": {
+                "Type": "time"
+            },
+            "end_time": {
+                "Type": "time"
+            },
+            "hours": {
+                "Type": "float",
+                "Null": "NO"
+            },
+            "activity": {
+                "Type": "text",
+                "Null": "NO"
+            },
+            "project_id": {
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "MUL"
+            },
+            "creator_id": {
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "MUL"
+            },
+            "is_cleared": {
+                "Type": "int(11)",
+                "Default": "0"
+            },
+            "invoice_id": {
+                "Type": "int(11)"
+            },
+            "workload_id": {
+                "Type": "int(11)",
+                "Key": "MUL"
+            },
+            "is_deleted": {
+                "Type": "int(11)",
+                "Default": "0"
+            },
+            "maintenance_block_id": {
+                "Type": "int(11)"
+            },
+            "is_foreign_project": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            }
+        }
+    },
+    "project_workload": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "project_id": {
+                "Type": "int(11)",
+                "Key": "MUL"
+            },
+            "name": {
+                "Type": "varchar(512)"
+            },
+            "is_deleted": {
+                "Type": "int(11)",
+                "Default": "0"
+            },
+            "hours": {
+                "Type": "decimal(10,2)",
+                "Default": "0.00"
+            },
+            "is_completed": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            },
+            "is_not_billable": {
+                "Type": "tinyint(1)",
+                "Default": "0"
+            },
+            "project_workload_type_id": {
+                "Type": "int(11)",
+                "Null": "NO"
+            }
+        }
+    },
     "query_log": {
         "fields": {
             "id": {
@@ -5147,16 +5167,13 @@
                 "Extra": "auto_increment"
             },
             "region_annual_dues_open_entry_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_annual_dues_fee_relief_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "is_deleted": {
                 "Type": "tinyint(1)",
@@ -5229,12 +5246,10 @@
                 "Extra": "auto_increment"
             },
             "region_annual_dues_fee_relief_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "is_deleted": {
                 "Type": "tinyint(1)",
@@ -5313,8 +5328,7 @@
                 "Extra": "auto_increment"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "report_month": {
                 "Type": "int(2)"
@@ -5362,8 +5376,7 @@
                 "Key": "MUL"
             },
             "previous_person_annual_dues_action_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "person_annual_dues": {
                 "Type": "decimal(16,2)"
@@ -5380,15 +5393,13 @@
                 "Default": "0"
             },
             "fee_relief_reduction_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "origin_amount": {
                 "Type": "decimal(16,2)"
             },
             "fee_relief_defer_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "fee_defer_until_date": {
                 "Type": "date"
@@ -5410,8 +5421,7 @@
                 "Extra": "auto_increment"
             },
             "region_id": {
-                "Type": "int(20)",
-                "Key": "MUL"
+                "Type": "int(20)"
             },
             "created_at": {
                 "Type": "date"
@@ -5515,8 +5525,7 @@
                 "Type": "decimal(10,2)"
             },
             "payment_currency_iso": {
-                "Type": "varchar(3)",
-                "Key": "MUL"
+                "Type": "varchar(3)"
             },
             "is_accepted": {
                 "Type": "tinyint(1)",
@@ -5602,6 +5611,54 @@
         }
     },
     "region_reporting_status": {
+        "fields": {
+            "id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "region_id": {
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL"
+            },
+            "status": {
+                "Type": "tinyint(1)"
+            },
+            "reporting_period": {
+                "Type": "date"
+            },
+            "closed_date": {
+                "Type": "date"
+            },
+            "username": {
+                "Type": "varchar(255)"
+            },
+            "user_id": {
+                "Type": "bigint(20)",
+                "Key": "MUL"
+            },
+            "is_deleted": {
+                "Type": "int(1)",
+                "Default": "0"
+            },
+            "created_at": {
+                "Type": "datetime",
+                "Null": "NO"
+            },
+            "modified_at": {
+                "Type": "datetime"
+            },
+            "migration_meta_data": {
+                "Type": "text"
+            },
+            "migrated_at": {
+                "Type": "datetime"
+            }
+        }
+    },
+    "region_reporting_status_copy": {
         "fields": {
             "id": {
                 "Type": "int(11)",
@@ -5884,8 +5941,7 @@
                 "Key": "MUL"
             },
             "display_name": {
-                "Type": "varchar(255)",
-                "Key": "MUL"
+                "Type": "varchar(255)"
             },
             "corporate_name": {
                 "Type": "varchar(512)"
@@ -6353,8 +6409,7 @@
                 "Default": "0.00"
             },
             "team_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "team_name": {
                 "Type": "varchar(255)"
@@ -6808,8 +6863,7 @@
                 "Type": "int(11)"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_name": {
                 "Type": "varchar(255)"
@@ -6995,8 +7049,7 @@
                 "Type": "varchar(255)"
             },
             "country_iso": {
-                "Type": "varchar(2)",
-                "Key": "MUL"
+                "Type": "varchar(2)"
             },
             "state_id": {
                 "Type": "int(11)",
@@ -7039,8 +7092,7 @@
                 "Type": "varchar(255)"
             },
             "contact_information_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
+                "Type": "bigint(20)"
             },
             "reporting_currency_iso": {
                 "Type": "varchar(3)"
@@ -7535,8 +7587,7 @@
                 "Type": "varchar(255)"
             },
             "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "region_name": {
                 "Type": "varchar(255)"
@@ -7682,8 +7733,7 @@
                 "Type": "enum('RUNNING','STOPPED','REQUESTED','RESERVED')"
             },
             "reserved_by": {
-                "Type": "varchar(255)",
-                "Key": "MUL"
+                "Type": "varchar(255)"
             },
             "last_successful_run_at": {
                 "Type": "datetime"
@@ -7930,8 +7980,7 @@
                 "Key": "MUL"
             },
             "office_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "gci_rxd_lifetime": {
                 "Type": "decimal(16,2)"
@@ -8196,8 +8245,7 @@
                 "Key": "MUL"
             },
             "office_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "gci_rxd_lifetime": {
                 "Type": "decimal(16,2)"
@@ -8528,7 +8576,7 @@
                 "Key": "MUL"
             },
             "term": {
-                "Type": "longtext",
+                "Type": "text",
                 "Key": "MUL"
             },
             "field": {
@@ -8542,128 +8590,6 @@
             },
             "order_number": {
                 "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime"
-            }
-        }
-    },
-    "search_index_entry_new": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "search_index_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "term": {
-                "Type": "longtext",
-                "Key": "MUL"
-            },
-            "field": {
-                "Type": "varchar(255)"
-            },
-            "export_field": {
-                "Type": "varchar(255)"
-            },
-            "permission_key": {
-                "Type": "varchar(255)"
-            },
-            "order_number": {
-                "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime"
-            }
-        }
-    },
-    "search_index_entry_old": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "search_index_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "term": {
-                "Type": "longtext",
-                "Key": "MUL"
-            },
-            "field": {
-                "Type": "varchar(255)"
-            },
-            "export_field": {
-                "Type": "varchar(255)"
-            },
-            "permission_key": {
-                "Type": "varchar(255)"
-            },
-            "order_number": {
-                "Type": "int(11)"
-            },
-            "created_at": {
-                "Type": "datetime"
-            }
-        }
-    },
-    "search_index_new": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "source_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "source_type": {
-                "Type": "int(11)",
-                "Key": "MUL"
-            },
-            "unique_object_id": {
-                "Type": "varchar(50)"
-            },
-            "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
-            },
-            "created_at": {
-                "Type": "datetime"
-            }
-        }
-    },
-    "search_index_old": {
-        "fields": {
-            "id": {
-                "Type": "bigint(20)",
-                "Null": "NO",
-                "Key": "PRI",
-                "Extra": "auto_increment"
-            },
-            "source_id": {
-                "Type": "bigint(20)",
-                "Key": "MUL"
-            },
-            "source_type": {
-                "Type": "int(11)",
-                "Key": "MUL"
-            },
-            "unique_object_id": {
-                "Type": "varchar(50)"
-            },
-            "region_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
             },
             "created_at": {
                 "Type": "datetime"
@@ -8828,8 +8754,7 @@
                 "Key": "MUL"
             },
             "franchise_agreement_id": {
-                "Type": "int(11)",
-                "Key": "MUL"
+                "Type": "int(11)"
             },
             "created_at": {
                 "Type": "datetime",
@@ -9182,28 +9107,23 @@
             }
         }
     },
-    "top_person_commission": {
+    "user_dashboard": {
         "fields": {
-            "firstname": {
-                "Type": "varchar(255)",
-                "Null": "NO"
-            },
-            "lastname": {
-                "Type": "varchar(255)",
-                "Null": "NO"
-            },
-            "gci_ytd_this_year": {
-                "Type": "decimal(41,2)"
-            },
-            "office_name": {
-                "Type": "varchar(255)"
-            },
-            "region_name": {
-                "Type": "varchar(255)"
-            },
-            "region_id": {
+            "id": {
                 "Type": "int(11)",
-                "Default": "0"
+                "Null": "NO",
+                "Key": "PRI",
+                "Extra": "auto_increment"
+            },
+            "person_id": {
+                "Type": "bigint(20)",
+                "Null": "NO"
+            },
+            "widget_id": {
+                "Type": "int(11)"
+            },
+            "sort_order": {
+                "Type": "int(11)"
             }
         }
     },
