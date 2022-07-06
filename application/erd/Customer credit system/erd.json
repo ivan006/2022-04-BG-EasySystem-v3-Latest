@@ -1,0 +1,67 @@
+{
+  "CCS People": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "CCS Transactions": "Person"
+    }
+  },
+  "CCS Transactions": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "Product": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Time": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Person": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Price": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Balance": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      }
+    }
+  },
+  "CCS Products": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "CCS Transactions": "Product"
+    }
+  }
+}
