@@ -1230,12 +1230,30 @@ class Table_page_lib
 		// foreach ($rows as $key => $value) {
 		// 	$rows_formatted[]["name"] = $value;
 		// }
+
+		$private_subsystems = array();
+		$public_subsystems = array();
+
 		foreach ($rows as $key => $value) {
 
 				if(is_dir($dir.$value) && !in_array($value, array(".",".."))){
-
-					$rows_formatted[]["name"] = $value;
+					$subsystem_contents = scandir($dir.$value);
+					$subsystem_contents =array_flip($subsystem_contents);
+					// echo "<br>";
+					if (isset($subsystem_contents["is_private"])) {
+						$private_subsystems[]["name"] = $value." (private)";
+					} else {
+						$public_subsystems[]["name"] = $value;
+					}
+					// $rows_formatted[]["name"] = $value;
 				}
+		}
+
+		if (!$this->CI->ion_auth->logged_in())
+		{
+			$rows_formatted = array_merge($public_subsystems);
+		} else {
+			$rows_formatted = array_merge($public_subsystems, $private_subsystems);
 		}
 
 
