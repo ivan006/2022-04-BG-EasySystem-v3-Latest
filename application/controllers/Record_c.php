@@ -37,11 +37,11 @@ class Record_c extends CI_Controller
 	{
 		$database = urldecode($database);
 		$table = urldecode($table);
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//edit (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 		// $data = $this->table_page_lib->record_abilities($table, $record_id);
 		$data = $this->table_page_lib->frontend_data_for_record_view($database, $table, $record_id);

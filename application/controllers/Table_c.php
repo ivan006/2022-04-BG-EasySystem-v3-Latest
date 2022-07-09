@@ -39,11 +39,11 @@ class Table_c extends CI_Controller
 	{
 		$database = urldecode($database);
 		$table = urldecode($table);
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//mixed (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 
 		// $data = $this->table_page_lib->table_abilities($table);
@@ -122,7 +122,7 @@ class Table_c extends CI_Controller
 	public function insert($database, $table)
 	{
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//edit
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -134,7 +134,7 @@ class Table_c extends CI_Controller
 
 	public function fetch_without_inheritance($table)
 	{
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//read
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -146,11 +146,11 @@ class Table_c extends CI_Controller
 
 	public function fetch($database, $table)
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 		$database = urldecode($database);
 		// $groups = $this->ion_auth->get_users_groups();
@@ -171,7 +171,7 @@ class Table_c extends CI_Controller
 
 	public function fetch_ssp($database, $table)
 	{
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//read
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -197,11 +197,11 @@ class Table_c extends CI_Controller
 	public function fetch_for_record($database, $table, $h_type, $haystack, $needle)
 	{
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 
 
@@ -231,7 +231,7 @@ class Table_c extends CI_Controller
 	public function fetch_for_record_ssp($database, $table, $h_type, $haystack, $needle)
 	{
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//read
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -264,23 +264,23 @@ class Table_c extends CI_Controller
 		echo json_encode($result, JSON_PRETTY_PRINT);
 	}
 
-	// public function fetch_join_where($table_1, $table_2, $haystack, $needle)
-	// {
-	// 	if (!$this->ion_auth->logged_in())
-	// 	{
-	// 		// redirect them to the login page
-	// 		redirect('auth/login', 'refresh');
-	// 	}
-	// 	$result = $this->table_page_lib->fetch_join_where($table_1, $table_2, $haystack, $needle);
-	// 	header('Content-Type: application/json');
-	// 	echo json_encode($result, JSON_PRETTY_PRINT);
-	// }
+	// // public function fetch_join_where($table_1, $table_2, $haystack, $needle)
+	// // {
+	// // 	if (!$this->ion_auth->logged_in())//read
+	// // 	{
+	// // 		// redirect them to the login page
+	// // 		redirect('auth/login', 'refresh');
+	// // 	}
+	// // 	$result = $this->table_page_lib->fetch_join_where($table_1, $table_2, $haystack, $needle);
+	// // 	header('Content-Type: application/json');
+	// // 	echo json_encode($result, JSON_PRETTY_PRINT);
+	// // }
 
 	public function delete($database, $table)
 	{
 
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//edit
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -296,7 +296,7 @@ class Table_c extends CI_Controller
 	{
 
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//edit
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -310,7 +310,7 @@ class Table_c extends CI_Controller
 	{
 
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
+		if (!$this->ion_auth->logged_in())//edit
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');

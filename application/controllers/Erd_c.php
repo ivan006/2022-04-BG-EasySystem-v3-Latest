@@ -27,11 +27,11 @@ class Erd_c extends CI_Controller
 	{
 
 		$database = urldecode($database);
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 		// echo "<pre>";
 		$data["erd"] = $this->erd_lib->erd($database);
 		$data["erd_to_db"] = $this->erd_lib->erd_to_db($database);

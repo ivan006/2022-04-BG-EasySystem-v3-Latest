@@ -1937,8 +1937,22 @@ class Table_page_lib
 	// public function user_groups_for_dropdown()
 	public function active_groups_dropdown()
 	{
+		$public_group = array(
+			"id"=> "0",
+			"name"=> "All public content",
+			"description"=> "All public content",
+			"group_id"=> "0",
+			"path"=> "0"
+		);
+		$user_groups = array($public_group);
 
-		$user_groups = $this->user_groups();
+		if (!$this->CI->ion_auth->logged_in())
+		{
+		} else {
+			$private_groups = $this->user_groups();
+			$user_groups = array_merge($user_groups,$private_groups);
+		}
+
 
 		$keys = array_column($user_groups, 'path');
 		$user_groups=array_combine($keys,$user_groups);

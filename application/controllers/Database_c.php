@@ -24,11 +24,11 @@ class Database_c extends CI_Controller
 
 	public function database($database)
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 		$database = urldecode($database);
 		$data['tables'] = $this->table_page_lib->database_api($database);
@@ -53,11 +53,11 @@ class Database_c extends CI_Controller
 
 	public function database_api($database)
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 		$database = urldecode($database);
 
@@ -69,11 +69,11 @@ class Database_c extends CI_Controller
 
 	public function databases()
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 		$data['tables'] = $this->table_page_lib->databases_api();
 
@@ -97,11 +97,11 @@ class Database_c extends CI_Controller
 
 	public function databases_api()
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
+		// if (!$this->ion_auth->logged_in())//read (changed)
+		// {
+		// 	// redirect them to the login page
+		// 	redirect('auth/login', 'refresh');
+		// }
 
 
 		$data = $this->table_page_lib->databases_api();
