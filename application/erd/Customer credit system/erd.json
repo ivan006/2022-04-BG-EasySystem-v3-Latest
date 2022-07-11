@@ -36,6 +36,9 @@
       "Person": {
         "Type": "bigint(20) unsigned"
       },
+      "Procedure": {
+        "Type": "bigint(20) unsigned"
+      },
       "Price": {
         "Type": "varchar(255)",
         "Null": "NO"
@@ -58,10 +61,33 @@
         "Type": "varchar(100)",
         "Null": "NO",
         "important_field": ""
+      },
+      "Description": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
       }
     },
     "items": {
       "CCS Transactions": "Product"
+    }
+  },
+  "CCS Procedures": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "CCS Transactions": "Procedure"
     }
   }
 }
