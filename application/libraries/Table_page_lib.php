@@ -242,11 +242,9 @@ class Table_page_lib
 					if ($key_2 == "id") {
 						$parent_link_part_1 = '<a href="/record/t/'.$key.'/r/';
 						$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
-						// $query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
-						$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `".$value["linking_key"]." - $key_2`");
+						$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
 					} else {
-						// $query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `$key - $key_2`");
-						$query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `".$value["linking_key"]." - $key_2`");
+						$query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `$key - $key_2`");
 					}
 
 
@@ -373,10 +371,547 @@ class Table_page_lib
 	public function fetch_ssp($database, $table, $page_type, $where, $groups)
 	{
 		if ("old"=="!old") {
+
+			$active_groups_dropdown = $this->active_groups_dropdown();
+			$active_groups_dropdown = $active_groups_dropdown["assumed"];
+			if ($active_groups_dropdown == "") {
+				$active_groups_dropdown = 2;
+			}
+
+
+
+			$table = urldecode($table);
+
+			$this->CI->load->database();
+
+			// $posts = $this->CI->db->where($where["haystack"], $where["needle"])->get($table)->result_array();
+
+
+
+
+			$this->CI->db->_protect_identifiers=false;
+			$query = $this->CI->db;
+
+
+			if ("old"=="old") {
+				// code...
+				if ("old"=="!old") {
+					// TODO: use frontend_data_for_table_view or frontend_data_for_record_view not backend_cache_columns
+
+					if (1==1) {
+						$erd_path = $this->CI->erd_lib->erd_path($database).'/erd.json';
+						$erd = file_get_contents($erd_path);
+						$erd = json_decode($erd, true);
+
+						if ($page_type == "record") {
+							$where["haystack_type"] = urldecode($where["haystack_type"]);
+							if ($where["haystack_type"] == "foreign_key") {
+								$foreign_key = $where["haystack"];
+							} else {
+								$foreign_key = null;
+							}
+							$cols_visible = $this->backend_cache_columns(
+								$table,
+								$erd,
+								$foreign_key
+							);
+							// $cols_visible = $this->backend_cache_columns($table, $erd, "");
+						}
+						elseif ($page_type == "table") {
+							$cols_visible = $this->backend_cache_columns($table, $erd, null);
+						}
+
+					}
+
+					if (1==1) {
+
+						foreach ($cols_visible["linking_cols"] as $key => $value) {
+							// if ($key !== $table) {
+							foreach ($value["cols"] as $key_2 => $value_2) {
+								if ($key_2 == "id") {
+									$parent_link_part_1 = '<a href="/record/t/'.$key.'/r/';
+									$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
+									$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
+								} else {
+									$query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `$key - $key_2`");
+								}
+
+
+							}
+							if (isset($value["is_self_joined"])) {
+								// $g_select["visible"] = array_merge(
+								// 	$g_select["visible"],
+								// 	array("$key - breadcrumbs" => "1")
+								// );
+
+								$query = $query->select("`joining_table_".$key."_breadcrumbs`.path"." as `$key - breadcrumbs`");
+
+								// $concat_part_1 = "`joining_table_".$key."_breadcrumbs`.path";
+								// $concat_part_2 = "`$table`.`id`";
+								// $query = $query->select("CONCAT($concat_part_1, "."'-'".", $concat_part_2) as `$key - breadcrumbs`");
+								// // $query = $query->select("CONCAT('0-', $concat_part_1, '-', $concat_part_2) as `$key - breadcrumbs`");
+							}
+							// }
+						}
+						foreach ($cols_visible["nonlinking_cols"] as $key => $value) {
+							$query = $query->select("`".$table."`".'.'."`".$key."`");
+							// if ($key == "id") {
+							// 	// code...
+							// 	$parent_link_part_1 = '<a href="/record/t/'.$table.'/r/';
+							// 	$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
+							// 	$query = $query->select("CONCAT('$parent_link_part_1', "."`".$table."`".".id, '$parent_link_part_2') as `id`");
+							// }
+
+						}
+						$query = $query->from("`".$table."`");
+
+						foreach ($cols_visible["linking_cols"] as $key => $value) {
+							// echo "xyz";
+							// if ($key !== $table) {
+							$query = $query->join("`".$key."` as `joining_table_".$key."`", "`".$table."`".'.'."`".$value["linking_key"]."`".' = '."`joining_table_".$key."`".'.id', 'left');
+							// }
+
+							if (isset($value["is_self_joined"])) {
+								$linking_key = $value["linking_key"];
+								// $sql="
+								// ";
+								$sql = array(
+									"WITH RECURSIVE q AS ",
+									"(",
+									// "SELECT  id,`$linking_key`, CONCAT('0-', id) as path",
+									"SELECT  id,`$linking_key`, CONCAT('', id) as path",
+									// "SELECT  id as id,`$linking_key`, id as path",
+									"FROM    `$key`",
+									"WHERE   `$linking_key` = 0",
+									"UNION ALL",
+									"SELECT  m.id,m.`$linking_key`, CONCAT(q.path, '-', m.id) as path",
+									"FROM    `$key` m",
+									"JOIN    q",
+									"ON      m.`$linking_key` = q.id",
+									")",
+									"SELECT  *",
+									// "SELECT  id,`$linking_key`, CONCAT('0-',path, '-', id) as path",
+									"FROM    q",
+
+								);
+								$sql = implode("\n\r", $sql);
+								// $query = $query->join("(".$sql.") as `joining_table_".$key."_breadcrumbs`", "`".$table."`".'.'."`$linking_key`".' = '."`joining_table_".$key."_breadcrumbs`".'.id', 'left');
+								$query = $query->join("(".$sql.") as `joining_table_".$key."_breadcrumbs`", "`".$table."`".'.'."`id`".' = '."`joining_table_".$key."_breadcrumbs`".'.id', 'left');
+							}
+						}
+					}
+
+
+				}
+				else {
+
+					$cols_visible = $this->frontend_data_for_table_view($database, $table);
+
+
+					if (1==1) {
+
+
+						foreach ($cols_visible["g_core_abilities"]["g_select"]["editable"] as $key => $value) {
+							if (isset($value["rels"])) {
+								$value_rels_table = $value["rels"]["table"];
+								// if ($value_rels_table !== $table) {
+								foreach ($value["rels"]["rows"] as $key_2 => $value_2) {
+									if ($key_2 == "id") {
+										$parent_link_part_1 = '<a href="/record/t/'.$value_rels_table.'/r/';
+										$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
+										$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$value_rels_table."`".".id".", '$parent_link_part_2') as `$value_rels_table - $key_2`");
+									} elseif (isset($value_2["assumed"])) {
+
+									} else {
+										$query = $query->select("`joining_table_".$value_rels_table."`"."."."`".$key_2."`"." as `$value_rels_table - $key_2`");
+									}
+
+
+								}
+								if (isset($value["rels"]["is_self_joined"])) {
+									// $g_select["visible"] = array_merge(
+									// 	$g_select["visible"],
+									// 	array("$value_rels_table - breadcrumbs" => "1")
+									// );
+
+									$query = $query->select("`joining_table_".$value_rels_table."_breadcrumbs`.path"." as `$value_rels_table - breadcrumbs`");
+
+									// $concat_part_1 = "`joining_table_".$value_rels_table."_breadcrumbs`.path";
+									// $concat_part_2 = "`$table`.`id`";
+									// $query = $query->select("CONCAT($concat_part_1, "."'-'".", $concat_part_2) as `$value_rels_table - breadcrumbs`");
+									// // $query = $query->select("CONCAT('0-', $concat_part_1, '-', $concat_part_2) as `$value_rels_table - breadcrumbs`");
+								}
+								// }
+							} else {
+								$query = $query->select("`".$table."`".'.'."`".$key."`");
+								// if ($key == "id") {
+								// 	// code...
+								// 	$parent_link_part_1 = '<a href="/record/t/'.$table.'/r/';
+								// 	$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
+								// 	$query = $query->select("CONCAT('$parent_link_part_1', "."`".$table."`".".id, '$parent_link_part_2') as `id`");
+								// }
+
+							}
+						}
+						$query = $query->from("`".$table."`");
+
+
+						// foreach ($cols_visible["linking_cols"] as $key => $value) {
+						// }
+						foreach ($cols_visible["g_core_abilities"]["g_select"]["editable"] as $key => $value) {
+							if (isset($value["rels"])) {
+
+								$value_rels_table = $value["rels"]["table"];
+								// echo "xyz";
+								// if ($value_rels_table !== $table) {
+								$query = $query->join("`".$value_rels_table."` as `joining_table_".$value_rels_table."`", "`".$table."`".'.'."`".$key."`".' = '."`joining_table_".$value_rels_table."`".'.id', 'left');
+								// }
+
+								if (isset($value["rels"]["is_self_joined"])) {
+									$linking_key = $key;
+									// $sql="
+									// ";
+									$sql = array(
+									"WITH RECURSIVE q AS ",
+									"(",
+									// "SELECT  id,`$linking_key`, CONCAT('0-', id) as path",
+									"SELECT  id,`$linking_key`, CONCAT('', id) as path",
+									// "SELECT  id as id,`$linking_key`, id as path",
+									"FROM    `$value_rels_table`",
+									"WHERE   `$linking_key` = 0",
+									"UNION ALL",
+									"SELECT  m.id,m.`$linking_key`, CONCAT(q.path, '-', m.id) as path",
+									"FROM    `$value_rels_table` m",
+									"JOIN    q",
+									"ON      m.`$linking_key` = q.id",
+									")",
+									"SELECT  *",
+									// "SELECT  id,`$linking_key`, CONCAT('0-',path, '-', id) as path",
+									"FROM    q",
+
+									);
+									$sql = implode("\n\r", $sql);
+									// $query = $query->join("(".$sql.") as `joining_table_".$value_rels_table."_breadcrumbs`", "`".$table."`".'.'."`$linking_key`".' = '."`joining_table_".$value_rels_table."_breadcrumbs`".'.id', 'left');
+									$query = $query->join("(".$sql.") as `joining_table_".$value_rels_table."_breadcrumbs`", "`".$table."`".'.'."`id`".' = '."`joining_table_".$value_rels_table."_breadcrumbs`".'.id', 'left');
+								}
+							}
+						}
+					}
+
+				}
+
+
+				if (1==1) {
+
+					// Table's primary key
+					$primaryKey = 'id';
+
+					// Array of database columns which should be read and sent back to DataTables.
+					// The `db` parameter represents the column name in the database, while the `dt`
+					// parameter represents the DataTables column identifier. In this case simple
+					// indexes
+					if ("old"=="!old") {
+
+						$columns = array(
+							array( 'db' => 'first_name', 'dt' => 0 ),
+							array( 'db' => 'last_name',  'dt' => 1 ),
+							array( 'db' => 'position',   'dt' => 2 ),
+							array( 'db' => 'office',     'dt' => 3 ),
+							array(
+								'db'        => 'start_date',
+								'dt'        => 4,
+								'formatter' => function( $d, $row ) {
+									return date( 'jS M y', strtotime($d));
+									}
+							),
+							array(
+								'db'        => 'salary',
+								'dt'        => 5,
+								'formatter' => function( $d, $row ) {
+									return '$'.number_format($d);
+								}
+							)
+						);
+					}
+					else {
+
+						$columns = array();
+						$i = 0;
+						foreach ($cols_visible["g_core_abilities"]["g_select"]["editable"] as $key => $value) {
+							if (!isset($value["rels"])) {
+								$columns[] = array(
+									"db" => $key,
+									"dt" => $i,
+								);
+							}
+							else {
+								$value_rels_table = $value["rels"]["table"];
+								// if ($value_rels_table !== $table) {
+								foreach ($value["rels"]["rows"] as $key_2 => $value_2) {
+
+								}
+
+							}
+
+							$i = $i+1;
+						}
+					}
+
+					// SQL server connection information
+					$sql_details = array(
+						'user' => '',
+						'pass' => '',
+						'db'   => '',
+						'host' => ''
+					);
+
+					$ssp_simple = $this->ssp_simple( $_GET, $sql_details, $table, $primaryKey, $columns );
+					// foreach ($ssp_simple as $key => $value) {
+					// 	echo "<h1>".$key."</h1>";
+					// 	echo "<pre>".$value."</pre>";
+					// }
+					// exit;
+					// // echo "<pre>";
+					// // echo json_encode($ssp_simple, JSON_PRETTY_PRINT);
+					// // exit;
+				}
+
+				// header('Content-Type: application/json');
+				// echo json_encode($cols_visible, JSON_PRETTY_PRINT);
+				// exit;
+
+
+				$query = $query->join("`_activity_log`", "`_activity_log`.`record_table_and_id` = CONCAT('$table', '/', `$table`.id)", 'left');
+
+				// echo json_encode($groups);
+				// exit;
+				$query = $query->group_start();
+				// $query = $query->or_where("`_activity_log`.`owner` =", "0");
+
+				$query = $query->where("`_activity_log`.`editability` =", "'pu'");
+				$query = $query->or_where("`_activity_log`.`visibility` =", "'pu'");
+				$query = $query->or_where("`_activity_log`.`editability` IS", "NULL");
+				$query = $query->or_where("`_activity_log`.`visibility` IS", "NULL");
+				$query = $query->or_where("`_activity_log`.`owner` =", "2");
+
+
+
+
+				if (!empty($groups)) {
+					// code...
+					$query = $query->or_where_in("`_activity_log`.`owner`", $groups);
+				}
+
+				$query = $query->where("`_activity_log`.`owner` =", $active_groups_dropdown);
+
+				$query = $query->group_end();
+				// $query = $query->or_where_in("`_activity_log`.`editability`", array("'Public'", "''"));
+				// $query = $query->or_where_in("`_activity_log`.`visibility`", array("'Public'", "''"));
+
+				if ($page_type == "record") {
+					$where["haystack"] = urldecode($where["haystack"]);
+
+					// echo "`".$table."`"."."."`".$where["haystack"]."` =". '"'.$where["needle"].'"';
+					// exit;
+					$query = $query->where("`".$table."`"."."."`".$where["haystack"]."` =", '"'.$where["needle"].'"');
+				}
+				elseif ($page_type == "table") {
+				}
+
+				if ("new"=="new") {
+					if (1==1) {
+						// http://indigo.bluegemify.co.za/api/table2/d/Integration%20Management%20System/t/ES%20Integration%20engines/fetch_for_record/h_type/primary_key/h/id/n/1
+						// ?draw=1&
+						//
+						// columns[0][data]=id&
+						// columns[0][name]=&
+						// columns[0][searchable]=true&
+						// columns[0][orderable]=true&
+						// columns[0][search][value]=&
+						// columns[0][search][regex]=false&
+						//
+						// columns[1][data]=name&
+						// columns[1][name]=&
+						// columns[1][searchable]=true&
+						// columns[1][orderable]=true&
+						// columns[1][search][value]=&
+						// columns[1][search][regex]=false&
+						//
+						// columns[2][data]=2&
+						// columns[2][name]=&
+						// columns[2][searchable]=true&
+						// columns[2][orderable]=true&
+						// columns[2][search][value]=&
+						// columns[2][search][regex]=false&
+						//
+						// order[0][column]=0&
+						// order[0][dir]=asc&
+						// start=0&
+						// length=10&
+						// search[value]=&
+						// search[regex]=false&
+						// _=1645784879628
+
+						// ssp_limit($request)
+					}
+
+					$request = $_GET;
+
+					$columns = array();
+					$i = 0;
+
+					if ("old"=="!old") {
+
+						foreach ($cols_visible["nonlinking_cols"] as $key => $value) {
+							$columns[] = array(
+								'db' => $key,
+								'dt' => $i
+							);
+							$i = $i+1;
+						}
+					}
+					else {
+						// code...
+						foreach ($cols_visible["g_core_abilities"]["g_select"]["editable"] as $key => $value) {
+							$columns[] = array(
+								'db' => $key,
+								'dt' => $i
+							);
+							$i = $i+1;
+						}
+					}
+
+					$bindings = array();
+					// echo "<pre>";
+					// echo json_encode($columns, JSON_PRETTY_PRINT);
+					// exit;
+					// {
+					// 	"id": {
+					// 		"Type": "bigint(20) unsigned",
+					// 		"Null": "NO",
+					// 		"Key": "PRI",
+					// 		"Extra": "auto_increment",
+					// 		"important_field": ""
+					// 	},
+					// 	"name": {
+					// 		"Type": "text"
+					// 	}
+					// }
+
+					$dt_where = $this->filter( $request, $columns, $bindings );
+
+					// $query = $query->where($dt_where);
+
+					if ($_GET["search"]["value"] !== "") {
+						foreach ($cols_visible["nonlinking_cols"] as $key => $value) {
+							$query = $query->where("`".$table."`"."."."`".$key."` LIKE", '"%'.$_GET["search"]["value"].'%"');
+						}
+					}
+
+					// $columnIdx = intval($request['order'][$i]['column']);
+					// $requestColumn = $request['columns'][$columnIdx];
+					// // $columnIdx = array_search( $requestColumn['data'], $dtColumns );
+
+					$order_col_num = $request['order'][0]["column"];
+					$order_col_name = $request["columns"][$order_col_num]["data"];
+					$order_dir = $request['order'][0]["dir"];
+
+					$query = $query->order_by("`".$order_col_name."`", $order_dir);
+					$query = $query->limit(intval($request['length']), intval($request['start']));
+
+
+					// $query = $query->where($dt_where);
+
+
+				}
+
+				// $sql = $query->_compile_select();
+				// echo $sql;
+				// exit;
+				$query = $query->get();
+
+			}
+
+
+
+			$posts = $query;
+			$num_rows = $query->num_rows();
+			$posts = $posts->result_array();
+
+			// print_r($this->CI->db->last_query());
+			// exit;
+
+
+			$this->CI->db->_protect_identifiers=true;
+
+
+
+
+			$this->CI->db->_protect_identifiers=false;
+			$recordsTotal = $this->CI->db->select('COUNT(`id`)')->from("`$table`")->get()->result_array()[0]["COUNT(`id`)"];
+			$this->CI->db->_protect_identifiers=true;
+
+			$data = array(
+				"draw" => isset ( $request['draw'] ) ? intval( $request['draw'] ) : 0,
+				'recordsTotal' => intval( $recordsTotal ),
+				'recordsFiltered' => intval( $recordsTotal ),
+				// 'recordsTotal' => intval( $recordsTotal ),
+				// 'recordsFiltered' => $num_rows,
+				'data' => $posts
+			);
+
+			// header('Content-Type: application/json');
+			// echo $this->CI->db->last_query();
+			// exit;
+			return $data;
 		}
 		else {
 
 			if ("old"=="!old") {
+
+				$bindings = array();
+				$db = $this->CI->ssp->db( $conn );
+
+				// Build the SQL query string from the request
+				$limit = $this->CI->ssp->limit( $request, $columns );
+				$order = $this->CI->ssp->order( $request, $columns );
+				$where_sql = $this->CI->ssp->filter( $request, $columns, $bindings );
+
+				// Main query to actually get the data
+				$data = $this->CI->ssp->sql_exec( $db, $bindings,
+					"SELECT `".implode("`, `", $this->CI->ssp->pluck($columns, 'db'))."`
+					FROM `$table`
+					$where_sql
+					$order
+					$limit"
+				);
+
+				// Data set length after filtering
+				$resFilterLength = $this->CI->ssp->sql_exec( $db, $bindings,
+					"SELECT COUNT(`{$primaryKey}`)
+					FROM   `$table`
+					$where_sql"
+				);
+				$recordsFiltered = $resFilterLength[0][0];
+
+				// Total data set length
+				$resTotalLength = $this->CI->ssp->sql_exec( $db,
+				"SELECT COUNT(`{$primaryKey}`)
+				FROM   `$table`"
+				);
+				$recordsTotal = $resTotalLength[0][0];
+
+				/*
+				* Output
+				*/
+				return array(
+					"draw"            => isset ( $request['draw'] ) ?
+					intval( $request['draw'] ) :
+					0,
+					"recordsTotal"    => intval( $recordsTotal ),
+					"recordsFiltered" => intval( $recordsFiltered ),
+					"data"            => $this->CI->ssp->data_output( $columns, $data )
+				);
 			}
 			else {
 
@@ -664,10 +1199,7 @@ class Table_page_lib
 		// 	$rows_formatted[]["name"] = $value;
 		// }
 		foreach ($rows as $key => $value) {
-			$rows_formatted[] = array(
-				"name"=>$key,
-				"url"=>$key,
-			);
+			$rows_formatted[]["name"] = $key;
 		}
 
 
@@ -709,15 +1241,9 @@ class Table_page_lib
 					$subsystem_contents =array_flip($subsystem_contents);
 					// echo "<br>";
 					if (isset($subsystem_contents["is_private"])) {
-						$private_subsystems[] = array(
-							"name"=>"Private - ".$value,
-							"url"=>$value,
-						);
+						$private_subsystems[]["name"] = $value." (private)";
 					} else {
-							$public_subsystems[] = array(
-								"name"=>$value,
-								"url"=>$value,
-							);
+						$public_subsystems[]["name"] = $value;
 					}
 					// $rows_formatted[]["name"] = $value;
 				}
@@ -739,24 +1265,24 @@ class Table_page_lib
 	{
 		$parents = array();
 
-		foreach ($erd as $table_name => $table_contents) {
-			if (isset($table_contents["items"])) {
-				foreach ($table_contents["items"] as $relation_table => $relation_foreign_key) {
-					if ($relation_table == $table) {
+		foreach ($erd as $key => $value) {
+			if (isset($value["items"])) {
+				foreach ($value["items"] as $key_2 => $value_2) {
+					if ($key_2 == $table) {
 
-						if ($relation_foreign_key !== $foreign_key) { // dont inherit values for current parent
-							// echo $relation_table;
-							$parents[$table_name]["cols"] = $table_contents["fields"];
-							$parents[$table_name]["linking_key"] = $relation_foreign_key;
-							// if (isset($table_contents["items"][$table_name])) {
-							// 	$parents[$table_name]["is_self_joined"] = 1;
+						if ($value_2 !== $foreign_key) { // dont inherit values for current parent
+							// echo $key_2;
+							$parents[$key]["cols"] = $value["fields"];
+							$parents[$key]["linking_key"] = $value_2;
+							// if (isset($value["items"][$key])) {
+							// 	$parents[$key]["is_self_joined"] = 1;
 							// }
 						}
-						if (isset($table_contents["items"][$table_name])) {
-							$parents[$table_name]["cols"] = $table_contents["fields"];
-							$parents[$table_name]["linking_key"] = $relation_foreign_key;
+						if (isset($value["items"][$key])) {
+							$parents[$key]["cols"] = $value["fields"];
+							$parents[$key]["linking_key"] = $value_2;
 
-							$parents[$table_name]["is_self_joined"] = 1;
+							$parents[$key]["is_self_joined"] = 1;
 
 						}
 					}
@@ -871,8 +1397,6 @@ class Table_page_lib
 			$cols_wth_props = array();
 
 			foreach ($cols_visible["linking_cols"] as $key => $value) {
-				// linking_key
-				// $linking_cols[$table_name]["linking_key"] = $relation_foreign_key;
 
 				// header('Content-Type: application/json');
 				// echo json_encode($value, JSON_PRETTY_PRINT);
@@ -880,9 +1404,7 @@ class Table_page_lib
 				foreach ($value["cols"] as $key_2 => $value_2) {
 					if (isset($value_2["important_field"])) {
 						// code...
-						// $cols_wth_props["$key - $key_2"] = $value_2;
-						$cols_wth_props[$value["linking_key"]." - $key_2"] = $value_2;
-
+						$cols_wth_props["$key - $key_2"] = $value_2;
 					}
 				}
 				$g_select["visible"] = array_merge(
@@ -905,10 +1427,8 @@ class Table_page_lib
 					$cols_visible_lookup_part_2 = array();
 					foreach ($cols_visible_lookup_helper["linking_cols"] as $key_lookup => $value_lookup) {
 						foreach ($value_lookup["cols"] as $key_lookup_2 => $value_lookup_2) {
-							// $cols_visible_lookup_part_2["$key_lookup - $key_lookup_2"] = $value_lookup_2;
-							// $cols_visible_lookup_part_2["$key_lookup - $key_lookup_2"]["assumed"] = "";
-								$cols_visible_lookup_part_2[$value_lookup["linking_key"]." - $key_lookup_2"] = $value_lookup_2;
-								$cols_visible_lookup_part_2[$value_lookup["linking_key"]." - $key_lookup_2"]["assumed"] = "";
+							$cols_visible_lookup_part_2["$key_lookup - $key_lookup_2"] = $value_lookup_2;
+							$cols_visible_lookup_part_2["$key_lookup - $key_lookup_2"]["assumed"] = "";
 						}
 						$cols_visible_lookup = array_merge(
 							$cols_visible_lookup,
@@ -1373,23 +1893,7 @@ class Table_page_lib
 
 				$relation = file_get_contents($this->CI->erd_lib->erd_path($database)."/crud_cache/$key.txt");
 				$relation = json_decode($relation, true);
-
-
 				$relation = $relation["g_core_abilities"]["g_select"];
-
-				// if ("new"=="new") {
-				// 	echo "<details>";
-				// 	echo "<summary>";
-				// 	echo $key;
-				// 	echo "</summary>";
-				// 	echo "<pre>";
-				// 	echo json_encode(array($g_where_haystack), JSON_PRETTY_PRINT);
-				// 	echo "</pre>";
-				// 	echo "</details>";
-				// 	// foreach ($relation as $key_2 => $value_2) {
-				// 	// 	// code...
-				// 	// }
-				// }
 
 				$g_where_haystack = $value["g_identity"]["g_where_haystack"];
 				unset($relation["editable"][$g_where_haystack]["rels"]);
@@ -1400,16 +1904,10 @@ class Table_page_lib
 
 				// $table_name = $data["table_name"];
 				$self_editable_cols = $data["g_core_abilities"]["g_select"]["editable"];
-
 				foreach ($self_editable_cols as $self_editable_col_key => $self_editable_col_value) {
-					// if (isset($relation["visible"]["$table - $self_editable_col_key"])) {
-					//
-					// 	unset($relation["visible"]["$table - $self_editable_col_key"]);
-					// }
+					if (isset($relation["visible"]["$table - $self_editable_col_key"])) {
 
-					if (isset($relation["visible"]["$g_where_haystack - $self_editable_col_key"])) {
-
-						unset($relation["visible"]["$g_where_haystack - $self_editable_col_key"]);
+						unset($relation["visible"]["$table - $self_editable_col_key"]);
 					}
 				}
 				// header('Content-Type: application/json');
@@ -1812,11 +2310,9 @@ class Table_page_lib
 							if ($key_2 == "id") {
 								$parent_link_part_1 = '<a href="/record/t/'.$key.'/r/';
 								$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
-								// $query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
-								$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `".$value["linking_key"]." - $key_2`");
+								$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
 							} else {
-								// $query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `$key - $key_2`");
-								$query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `".$value["linking_key"]." - $key_2`");
+								$query = $query->select("`joining_table_".$key."`"."."."`".$key_2."`"." as `$key - $key_2`");
 							}
 
 
@@ -1902,13 +2398,11 @@ class Table_page_lib
 								if ($key_2 == "id") {
 									$parent_link_part_1 = '<a href="/record/t/'.$value_rels_table.'/r/';
 									$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
-									// $query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$value_rels_table."`".".id".", '$parent_link_part_2') as `$value_rels_table - $key_2`");
-									$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$value_rels_table."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
+									$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$value_rels_table."`".".id".", '$parent_link_part_2') as `$value_rels_table - $key_2`");
 								} elseif (isset($value_2["assumed"])) {
 
 								} else {
-									// $query = $query->select("`joining_table_".$value_rels_table."`"."."."`".$key_2."`"." as `$value_rels_table - $key_2`");
-										$query = $query->select("`joining_table_".$value_rels_table."`"."."."`".$key_2."`"." as `$key - $key_2`");
+									$query = $query->select("`joining_table_".$value_rels_table."`"."."."`".$key_2."`"." as `$value_rels_table - $key_2`");
 								}
 
 
