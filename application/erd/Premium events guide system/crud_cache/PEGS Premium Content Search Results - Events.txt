@@ -1,0 +1,336 @@
+{
+    "table_name": "PEGS Premium Content Search Results - Events",
+    "table_name_singular": "PEGS Premium Content Search Results - Event",
+    "table_exists": 1,
+    "g_core_abilities": {
+        "g_identity": {
+            "g_ability_name": "PEGS Premium Content Search Results - Events",
+            "g_ability_html_id": "pegspremiumcontentsearchresultsevents",
+            "g_from": "PEGS Premium Content Search Results - Events",
+            "g_where_haystack": "id",
+            "g_where_haystack_type": "foreign_key",
+            "data_endpoint": "fetch_for_record\/h_type\/primary_key\/h\/id\/n\/"
+        },
+        "g_select": {
+            "editable": {
+                "id": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned",
+                        "Null": "NO",
+                        "Key": "PRI",
+                        "Extra": "auto_increment",
+                        "important_field": ""
+                    }
+                },
+                "Search": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Premium Content Searches",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Time": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Event": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Events",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "important_field": ""
+                            },
+                            "Time": {
+                                "Type": "varchar(255)",
+                                "Null": "NO"
+                            },
+                            "Price": {
+                                "Type": "varchar(255)",
+                                "Null": "NO"
+                            },
+                            "Link for more info": {
+                                "Type": "varchar(255)",
+                                "Null": "NO"
+                            },
+                            "Venue - id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "assumed": ""
+                            },
+                            "Venue - Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": "",
+                                "assumed": ""
+                            },
+                            "Genre - id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "assumed": ""
+                            },
+                            "Genre - Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": "",
+                                "assumed": ""
+                            },
+                            "Type - id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "assumed": ""
+                            },
+                            "Type - Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": "",
+                                "assumed": ""
+                            },
+                            "Status - id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "assumed": ""
+                            },
+                            "Status - Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": "",
+                                "assumed": ""
+                            },
+                            "Scale - id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment",
+                                "assumed": ""
+                            },
+                            "Scale - Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": "",
+                                "assumed": ""
+                            }
+                        }
+                    }
+                },
+                "Time": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                },
+                "Price": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                },
+                "Link for more info": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                },
+                "Venue": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Venues",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Genre": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Genres",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Type": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Types",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Scale": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Scales",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Status": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "PEGS Event Tracking Statuses",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "visible": {
+                "id": {
+                    "Type": "bigint(20) unsigned",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Extra": "auto_increment",
+                    "important_field": ""
+                },
+                "Time": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "Price": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "Link for more info": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "Search - Time": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "Venue - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "Event - id": {
+                    "Type": "bigint(20) unsigned",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Extra": "auto_increment",
+                    "important_field": ""
+                },
+                "Genre - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "Type - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "Status - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "Scale - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                }
+            }
+        }
+    },
+    "g_parental_abilities": {
+        "PEGS Premium Content Search Results - Sets": {
+            "g_identity": {
+                "g_ability_name": "PEGS Premium Content Search Results - Sets (as Event)",
+                "g_ability_html_id": "pegspremiumcontentsearchresultssetsasevent",
+                "g_from": "PEGS Premium Content Search Results - Sets",
+                "g_where_haystack": "Event",
+                "g_where_haystack_type": "foreign_key",
+                "data_endpoint": "fetch_for_record\/h_type\/foreign_key\/h\/Event\/n\/"
+            }
+        }
+    }
+}

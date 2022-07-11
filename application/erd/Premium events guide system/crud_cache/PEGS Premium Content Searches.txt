@@ -1,0 +1,72 @@
+{
+    "table_name": "PEGS Premium Content Searches",
+    "table_name_singular": "PEGS Premium Content Searche",
+    "table_exists": 1,
+    "table_links": {
+        "Do a search": "#"
+    },
+    "g_core_abilities": {
+        "g_identity": {
+            "g_ability_name": "PEGS Premium Content Searches",
+            "g_ability_html_id": "pegspremiumcontentsearches",
+            "g_from": "PEGS Premium Content Searches",
+            "g_where_haystack": "id",
+            "g_where_haystack_type": "foreign_key",
+            "data_endpoint": "fetch_for_record\/h_type\/primary_key\/h\/id\/n\/"
+        },
+        "g_select": {
+            "editable": {
+                "id": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned",
+                        "Null": "NO",
+                        "Key": "PRI",
+                        "Extra": "auto_increment"
+                    }
+                },
+                "Time": {
+                    "col_deets": {
+                        "Type": "varchar(100)",
+                        "Null": "NO",
+                        "important_field": ""
+                    }
+                }
+            },
+            "visible": {
+                "id": {
+                    "Type": "bigint(20) unsigned",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Extra": "auto_increment"
+                },
+                "Time": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                }
+            }
+        }
+    },
+    "g_parental_abilities": {
+        "PEGS Premium Content Search Results - Events": {
+            "g_identity": {
+                "g_ability_name": "PEGS Premium Content Search Results - Events (as Search)",
+                "g_ability_html_id": "pegspremiumcontentsearchresultseventsassearch",
+                "g_from": "PEGS Premium Content Search Results - Events",
+                "g_where_haystack": "Search",
+                "g_where_haystack_type": "foreign_key",
+                "data_endpoint": "fetch_for_record\/h_type\/foreign_key\/h\/Search\/n\/"
+            }
+        },
+        "PEGS Customer Credit Transactions": {
+            "g_identity": {
+                "g_ability_name": "PEGS Customer Credit Transactions (as Search)",
+                "g_ability_html_id": "pegscustomercredittransactionsassearch",
+                "g_from": "PEGS Customer Credit Transactions",
+                "g_where_haystack": "Search",
+                "g_where_haystack_type": "foreign_key",
+                "data_endpoint": "fetch_for_record\/h_type\/foreign_key\/h\/Search\/n\/"
+            }
+        }
+    }
+}

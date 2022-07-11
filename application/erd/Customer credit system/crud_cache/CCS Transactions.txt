@@ -1,0 +1,150 @@
+{
+    "table_name": "CCS Transactions",
+    "table_name_singular": "CCS Transaction",
+    "table_exists": 1,
+    "g_core_abilities": {
+        "g_identity": {
+            "g_ability_name": "CCS Transactions",
+            "g_ability_html_id": "ccstransactions",
+            "g_from": "CCS Transactions",
+            "g_where_haystack": "id",
+            "g_where_haystack_type": "foreign_key",
+            "data_endpoint": "fetch_for_record\/h_type\/primary_key\/h\/id\/n\/"
+        },
+        "g_select": {
+            "editable": {
+                "id": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned",
+                        "Null": "NO",
+                        "Key": "PRI",
+                        "Extra": "auto_increment",
+                        "important_field": ""
+                    }
+                },
+                "Product": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "CCS Products",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            },
+                            "Description": {
+                                "Type": "varchar(100)",
+                                "Null": "NO"
+                            }
+                        }
+                    }
+                },
+                "Time": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                },
+                "Person": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "CCS People",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Procedure": {
+                    "col_deets": {
+                        "Type": "bigint(20) unsigned"
+                    },
+                    "rels": {
+                        "table": "CCS Procedures",
+                        "rows": {
+                            "id": {
+                                "Type": "bigint(20) unsigned",
+                                "Null": "NO",
+                                "Key": "PRI",
+                                "Extra": "auto_increment"
+                            },
+                            "Name": {
+                                "Type": "varchar(100)",
+                                "Null": "NO",
+                                "important_field": ""
+                            }
+                        }
+                    }
+                },
+                "Payment": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                },
+                "Balance": {
+                    "col_deets": {
+                        "Type": "varchar(255)",
+                        "Null": "NO"
+                    }
+                }
+            },
+            "visible": {
+                "id": {
+                    "Type": "bigint(20) unsigned",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Extra": "auto_increment",
+                    "important_field": ""
+                },
+                "Time": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "Payment": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "Balance": {
+                    "Type": "varchar(255)",
+                    "Null": "NO"
+                },
+                "CCS People - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "CCS Products - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                },
+                "CCS Procedures - Name": {
+                    "Type": "varchar(100)",
+                    "Null": "NO",
+                    "important_field": ""
+                }
+            }
+        }
+    },
+    "g_parental_abilities": []
+}
