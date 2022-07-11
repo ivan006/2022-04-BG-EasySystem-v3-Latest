@@ -1180,6 +1180,7 @@ class Table_page_lib
 
 	}
 
+
 	public function database_api($database)
 	{
 		$erd_path = $this->CI->erd_lib->erd_path($database).'/erd.json';
@@ -1199,7 +1200,10 @@ class Table_page_lib
 		// 	$rows_formatted[]["name"] = $value;
 		// }
 		foreach ($rows as $key => $value) {
-			$rows_formatted[]["name"] = $key;
+			$rows_formatted[] = array(
+				"name"=>$key,
+				"url"=>$key,
+			);
 		}
 
 
@@ -1242,12 +1246,11 @@ class Table_page_lib
 					// echo "<br>";
 					if (isset($subsystem_contents["is_private"])) {
 						$private_subsystems[] = array(
-							"name"=>$value." (private)",
+							"name"=>"Private - ".$value,
 							"url"=>$value,
 						);
-						$private_subsystems[]["name"] = $value." (private)";
 					} else {
-							$private_subsystems[] = array(
+							$public_subsystems[] = array(
 								"name"=>$value,
 								"url"=>$value,
 							);
@@ -1267,7 +1270,7 @@ class Table_page_lib
 		$data = array('responce' => 'success', 'posts' => $rows_formatted);
 		return $data;
 	}
-
+	
 	public function backend_cache_columns($table, $erd, $foreign_key)
 	{
 		$parents = array();
