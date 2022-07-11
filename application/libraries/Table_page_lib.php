@@ -1199,10 +1199,7 @@ class Table_page_lib
 		// 	$rows_formatted[]["name"] = $value;
 		// }
 		foreach ($rows as $key => $value) {
-			$rows_formatted[] = array(
-				"name"=>$key,
-				"url"=>$key,
-			);
+			$rows_formatted[]["name"] = $key;
 		}
 
 
@@ -1245,11 +1242,12 @@ class Table_page_lib
 					// echo "<br>";
 					if (isset($subsystem_contents["is_private"])) {
 						$private_subsystems[] = array(
-							"name"=>"Private - ".$value,
+							"name"=>$value." (private)",
 							"url"=>$value,
 						);
+						$private_subsystems[]["name"] = $value." (private)";
 					} else {
-							$public_subsystems[] = array(
+							$private_subsystems[] = array(
 								"name"=>$value,
 								"url"=>$value,
 							);
@@ -1274,24 +1272,24 @@ class Table_page_lib
 	{
 		$parents = array();
 
-		foreach ($erd as $table_name => $table_contents) {
-			if (isset($table_contents["items"])) {
-				foreach ($table_contents["items"] as $relation_table => $relation_foreign_key) {
-					if ($relation_table == $table) {
+		foreach ($erd as $key => $value) {
+			if (isset($value["items"])) {
+				foreach ($value["items"] as $key_2 => $value_2) {
+					if ($key_2 == $table) {
 
-						if ($relation_foreign_key !== $foreign_key) { // dont inherit values for current parent
-							// echo $relation_table;
-							$parents[$table_name]["cols"] = $table_contents["fields"];
-							$parents[$table_name]["linking_key"] = $relation_foreign_key;
-							// if (isset($table_contents["items"][$table_name])) {
-							// 	$parents[$table_name]["is_self_joined"] = 1;
+						if ($value_2 !== $foreign_key) { // dont inherit values for current parent
+							// echo $key_2;
+							$parents[$key]["cols"] = $value["fields"];
+							$parents[$key]["linking_key"] = $value_2;
+							// if (isset($value["items"][$key])) {
+							// 	$parents[$key]["is_self_joined"] = 1;
 							// }
 						}
-						if (isset($table_contents["items"][$table_name])) {
-							$parents[$table_name]["cols"] = $table_contents["fields"];
-							$parents[$table_name]["linking_key"] = $relation_foreign_key;
+						if (isset($value["items"][$key])) {
+							$parents[$key]["cols"] = $value["fields"];
+							$parents[$key]["linking_key"] = $value_2;
 
-							$parents[$table_name]["is_self_joined"] = 1;
+							$parents[$key]["is_self_joined"] = 1;
 
 						}
 					}
@@ -1406,8 +1404,6 @@ class Table_page_lib
 			$cols_wth_props = array();
 
 			foreach ($cols_visible["linking_cols"] as $key => $value) {
-				// linking_key
-				// $linking_cols[$table_name]["linking_key"] = $relation_foreign_key;
 
 				// header('Content-Type: application/json');
 				// echo json_encode($value, JSON_PRETTY_PRINT);
@@ -1416,8 +1412,6 @@ class Table_page_lib
 					if (isset($value_2["important_field"])) {
 						// code...
 						$cols_wth_props["$key - $key_2"] = $value_2;
-
-						// $cols_wth_props[$value["linking_key"]." - $key_2"] = $value_2;
 					}
 				}
 				$g_select["visible"] = array_merge(
