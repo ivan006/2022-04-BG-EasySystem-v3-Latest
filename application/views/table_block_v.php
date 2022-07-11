@@ -328,133 +328,61 @@ $this->load->view('table_scripts_add_v', array(
 
   // Fetch Records
 
-  <?php
-  if ("old"=="!old") {
-    ?>
-    function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch(){
-      $.ajax({
-        url: "<?php echo base_url(); ?>api/table/d/<?php echo $database ?>/t/<?php echo $data["g_identity"]["g_from"]; ?>/<?php echo $data["g_identity"]["data_endpoint"]; ?>",
-        type: "post",
-        dataType: "json",
-        success: function(data){
-          if (data.responce == "success") {
+  function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch(){
+    $.ajax({
+      url: "<?php echo base_url(); ?>api/table/d/<?php echo $database ?>/t/<?php echo $data["g_identity"]["g_from"]; ?>/<?php echo $data["g_identity"]["data_endpoint"]; ?>",
+      type: "post",
+      dataType: "json",
+      success: function(data){
+        if (data.responce == "success") {
 
-            var i = "1";
-            $('#<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_records').DataTable( {
-              "data": data.posts,
-              "responsive": true,
-              dom:
-              "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-              "<'row'<'col-sm-12'tr>>" +
-              "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-              buttons: [
-              'copy', 'excel', 'pdf'
-              ],
-              "columns": [
-              // { "render": function(){
-              //   return a = i++;
-              // } },
-              <?php
-              foreach ($readable_rows as $key => $value) {
-                // if ($key !== "id") {
-                  ?>
-                  { "data": "<?php echo $key; ?>" },
-                  <?php
-                // }
-              }
-              ?>
-              // { "data": "table_overview" },
-              // { "data": "event_children" },
-              { "render": function ( data, type, row, meta ) {
-                var a = `
-                <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_del" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_edit_model" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
-                <a href="/record/d/<?php echo $database ?>/t/<?php echo $view_link_table; ?>/r/${row.<?php echo $view_link_id_key; ?>}" class="btn btn-sm btn-outline-primary">View</a>
-                `;
-
-                // <a href="/record/t/<?php echo 123; ?>/r/${row.<?php echo 123; ?>}" class="btn btn-sm btn-outline-primary">View</a>
-                return a;
-              } }
-              ]
-            } );
-          }else{
-            toastr["error"](data.message);
-          }
-
-        }
-      });
-
-    }
-
-    <?php
-  }
-  else {
-    ?>
-    function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch(){
-      // $.ajax({
-      //   url: "<?php echo base_url(); ?>api/table/d/<?php echo $database ?>/t/<?php echo $data["g_identity"]["g_from"]; ?>/<?php echo $data["g_identity"]["data_endpoint"]; ?>",
-      //   type: "post",
-      //   dataType: "json",
-      //   success: function(data){
-      //     if (data.responce == "success") {
-      //
-      //       var i = "1";
-      //     }else{
-      //       toastr["error"](data.message);
-      //     }
-      //
-      //   }
-      // });
-
-
-      $('#<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_records').DataTable( {
-        // "data": data.posts,
-        "processing": true,
-        "serverSide": true,
-        "ajax": "<?php echo base_url(); ?>api/table_ssp/d/<?php echo $database ?>/t/<?php echo $data["g_identity"]["g_from"]; ?>/<?php echo $data["g_identity"]["data_endpoint"]; ?>",
-        "order": [[ 0, 'desc' ]],
-        "responsive": true,
-        dom:
-        "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-        'copy', 'excel', 'pdf'
-        ],
-        "columns": [
-        // { "render": function(){
-        //   return a = i++;
-        // } },
-        <?php
-        foreach ($readable_rows as $key => $value) {
-          // if ($key !== "id") {
-            ?>
-            { "data": "<?php echo $key; ?>" },
+          var i = "1";
+          $('#<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_records').DataTable( {
+            "data": data.posts,
+            "responsive": true,
+            dom:
+            "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
+            'copy', 'excel', 'pdf'
+            ],
+            "columns": [
+            // { "render": function(){
+            //   return a = i++;
+            // } },
             <?php
-          // }
+            foreach ($readable_rows as $key => $value) {
+              // if ($key !== "id") {
+                ?>
+                { "data": "<?php echo $key; ?>" },
+                <?php
+              // }
+            }
+            ?>
+            // { "data": "table_overview" },
+            // { "data": "event_children" },
+            { "render": function ( data, type, row, meta ) {
+              var a = `
+              <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_del" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+              <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_edit_model" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+              <a href="/record/d/<?php echo $database ?>/t/<?php echo $view_link_table; ?>/r/${row.<?php echo $view_link_id_key; ?>}" class="btn btn-sm btn-outline-primary">View</a>
+              `;
+
+              // <a href="/record/t/<?php echo 123; ?>/r/${row.<?php echo 123; ?>}" class="btn btn-sm btn-outline-primary">View</a>
+              return a;
+            } }
+            ]
+          } );
+        }else{
+          toastr["error"](data.message);
         }
-        ?>
-        // { "data": "table_overview" },
-        // { "data": "event_children" },
-        { "render": function ( data, type, row, meta ) {
-          var a = `
-          <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_del" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-          <a href="#" value="${row.id}" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_edit_model" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
-          <a href="/record/d/<?php echo $database ?>/t/<?php echo $view_link_table; ?>/r/${row.<?php echo $view_link_id_key; ?>}" class="btn btn-sm btn-outline-primary">View</a>
-          `;
 
-          // <a href="/record/t/<?php echo 123; ?>/r/${row.<?php echo 123; ?>}" class="btn btn-sm btn-outline-primary">View</a>
-          return a;
-        } }
-        ]
-      } );
-
-    }
-
-    <?php
+      }
+    });
 
   }
-  ?>
+
   <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch();
 
   // Delete Record
