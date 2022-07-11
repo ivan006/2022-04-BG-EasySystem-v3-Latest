@@ -16,6 +16,9 @@
     "items": {
       "PEGS Premium Content Search Results - Events": "Search",
       "PEGS Customer Credit Transactions": "Search"
+    },
+    "table_links": {
+      "Do a search": "#"
     }
   },
   "PEGS Premium Content Search Results - Events": {
@@ -130,7 +133,7 @@
       "Procedure": {
         "Type": "bigint(20) unsigned"
       },
-      "Price": {
+      "Payment": {
         "Type": "varchar(255)",
         "Null": "NO"
       },
@@ -138,6 +141,9 @@
         "Type": "varchar(255)",
         "Null": "NO"
       }
+    },
+    "table_links": {
+      "Deposit credits": "#"
     }
   },
   "PEGS Customer Credit Procedures": {

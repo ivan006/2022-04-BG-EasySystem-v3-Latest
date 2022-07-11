@@ -39,7 +39,7 @@
       "Procedure": {
         "Type": "bigint(20) unsigned"
       },
-      "Price": {
+      "Payment": {
         "Type": "varchar(255)",
         "Null": "NO"
       },
@@ -64,8 +64,7 @@
       },
       "Description": {
         "Type": "varchar(100)",
-        "Null": "NO",
-        "important_field": ""
+        "Null": "NO"
       }
     },
     "items": {
