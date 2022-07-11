@@ -1241,9 +1241,16 @@ class Table_page_lib
 					$subsystem_contents =array_flip($subsystem_contents);
 					// echo "<br>";
 					if (isset($subsystem_contents["is_private"])) {
+						$private_subsystems[] = array(
+							"name"=>$value." (private)",
+							"url"=>$value,
+						);
 						$private_subsystems[]["name"] = $value." (private)";
 					} else {
-						$public_subsystems[]["name"] = $value;
+							$private_subsystems[] = array(
+								"name"=>$value,
+								"url"=>$value,
+							);
 					}
 					// $rows_formatted[]["name"] = $value;
 				}

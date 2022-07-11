@@ -121,7 +121,7 @@
                 //   )
                 // );
                 ?>
-                <a href="<?php echo $value ?>?<?php //echo "redirect=".$redirect ?>id=<?php echo $data["g_core_abilities"]["g_identity"]["g_where_needle"] ?>" class="btn btn-sm btn-outline-primary">
+                <a href="<?php echo $value ?>" class="btn btn-sm btn-outline-primary">
                   <?php echo $key ?>
                 </a>
               <?php endforeach; ?>
