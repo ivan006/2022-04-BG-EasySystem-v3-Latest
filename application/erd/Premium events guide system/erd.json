@@ -1,0 +1,351 @@
+{
+  "PEGS Premium Content Searches": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Time": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Premium Content Search Results - Events": "Search",
+      "PEGS Customer Credit Transactions": "Search"
+    }
+  },
+  "PEGS Premium Content Search Results - Events": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "Search": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Event": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Time": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Price": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Link for more info": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Venue": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Genre": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Type": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Scale": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Status": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "PEGS Premium Content Search Results - Sets": "Event"
+    }
+  },
+  "PEGS Premium Content Search Results - Sets": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "Set": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Event": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Artist": {
+        "Type": "bigint(20) unsigned",
+        "important_field": ""
+      }
+    }
+  },
+
+
+
+
+  "PEGS Customer Credit People": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Customer Credit Transactions": "Person"
+    }
+  },
+  "PEGS Customer Credit Transactions": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "Search": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Time": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Person": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Procedure": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Price": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Balance": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      }
+    }
+  },
+  "PEGS Customer Credit Procedures": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Customer Credit Transactions": "Procedure"
+    }
+  },
+
+
+
+
+
+  "PEGS Event Tracking Venues": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Events": "Venue",
+      "PEGS Premium Content Search Results - Events": "Venue"
+    }
+  },
+  "PEGS Event Tracking Events": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment",
+        "important_field": ""
+      },
+      "Time": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Price": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Link for more info": {
+        "Type": "varchar(255)",
+        "Null": "NO"
+      },
+      "Venue": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Genre": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Type": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Scale": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Status": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Sets": "Event",
+      "PEGS Premium Content Search Results - Events": "Event"
+    }
+  },
+  "PEGS Event Tracking Sets": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Event": {
+        "Type": "bigint(20) unsigned"
+      },
+      "Artist": {
+        "Type": "bigint(20) unsigned",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Premium Content Search Results - Sets": "Set"
+    }
+  },
+  "PEGS Event Tracking Artists": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      },
+      "Description": {
+        "Type": "varchar(100)",
+        "Null": "NO"
+      },
+      "Genre": {
+        "Type": "bigint(20) unsigned"
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Sets": "Artist",
+      "PEGS Premium Content Search Results - Sets": "Artist"
+    }
+  },
+  "PEGS Event Tracking Genres": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Events": "Genre",
+      "PEGS Event Tracking Artists": "Genre",
+      "PEGS Premium Content Search Results - Events": "Genre"
+    }
+  },
+  "PEGS Event Tracking Types": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Events": "Type",
+      "PEGS Premium Content Search Results - Events": "Type"
+    }
+  },
+  "PEGS Event Tracking Statuses": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Events": "Status",
+      "PEGS Premium Content Search Results - Events": "Status"
+    }
+  },
+  "PEGS Event Tracking Scales": {
+    "fields": {
+      "id": {
+        "Type": "bigint(20) unsigned",
+        "Null": "NO",
+        "Key": "PRI",
+        "Extra": "auto_increment"
+      },
+      "Name": {
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "important_field": ""
+      }
+    },
+    "items": {
+      "PEGS Event Tracking Events": "Scale",
+      "PEGS Premium Content Search Results - Events": "Scale"
+    }
+  }
+
+}
