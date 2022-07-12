@@ -240,7 +240,9 @@ class Table_page_lib
 				// if ($key !== $table) {
 				foreach ($value["cols"] as $key_2 => $value_2) {
 					if ($key_2 == "id") {
-						$parent_link_part_1 = '<a href="/record/t/'.$key.'/r/';
+
+						// $parent_link_part_1 = '<a href="/record/t/'.$key.'/r/';
+						$parent_link_part_1 = '<a href="/record/d/'.rawurldecode($database).'/t/'.$key.'/r/';
 						$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
 						// $query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `$key - $key_2`");
 						$query = $query->select("CONCAT('$parent_link_part_1', "."`joining_table_".$key."`".".id".", '$parent_link_part_2') as `".$value["linking_key"]." - $key_2`");
