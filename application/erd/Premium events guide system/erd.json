@@ -1,11 +1,12 @@
 {
-  "PEGS Premium Content Searches": {
+  "PEG Searches": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
         "Null": "NO",
         "Key": "PRI",
-        "Extra": "auto_increment"
+        "Extra": "auto_increment",
+        "important_field": ""
       },
       "Time": {
         "Type": "varchar(100)",
@@ -14,14 +15,14 @@
       }
     },
     "items": {
-      "PEGS Premium Content Search Results - Events": "Search",
-      "PEGS Customer Credit Transactions": "Search"
+      "PEG Searched Events": "Search",
+      "PEG Transactions": "Search"
     },
     "table_links": {
       "Do a search": "#"
     }
   },
-  "PEGS Premium Content Search Results - Events": {
+  "PEG Searched Events": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -65,10 +66,10 @@
       }
     },
     "items": {
-      "PEGS Premium Content Search Results - Sets": "Event"
+      "PEG Searched Sets": "Event"
     }
   },
-  "PEGS Premium Content Search Results - Sets": {
+  "PEG Searched Sets": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -93,7 +94,7 @@
 
 
 
-  "PEGS Customer Credit People": {
+  "PEG Transaction People": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -108,10 +109,10 @@
       }
     },
     "items": {
-      "PEGS Customer Credit Transactions": "Person"
+      "PEG Transactions": "Person"
     }
   },
-  "PEGS Customer Credit Transactions": {
+  "PEG Transactions": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -146,7 +147,7 @@
       "Deposit credits": "#"
     }
   },
-  "PEGS Customer Credit Procedures": {
+  "PEG Transaction Procedures": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -161,7 +162,7 @@
       }
     },
     "items": {
-      "PEGS Customer Credit Transactions": "Procedure"
+      "PEG Transactions": "Procedure"
     }
   },
 
@@ -169,7 +170,7 @@
 
 
 
-  "PEGS Event Tracking Venues": {
+  "PEG Event Venues": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -184,11 +185,11 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Events": "Venue",
-      "PEGS Premium Content Search Results - Events": "Venue"
+      "PEG Events": "Venue",
+      "PEG Searched Events": "Venue"
     }
   },
-  "PEGS Event Tracking Events": {
+  "PEG Events": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -226,11 +227,11 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Sets": "Event",
-      "PEGS Premium Content Search Results - Events": "Event"
+      "PEG Event Sets": "Event",
+      "PEG Searched Events": "Event"
     }
   },
-  "PEGS Event Tracking Sets": {
+  "PEG Event Sets": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -247,10 +248,10 @@
       }
     },
     "items": {
-      "PEGS Premium Content Search Results - Sets": "Set"
+      "PEG Searched Sets": "Set"
     }
   },
-  "PEGS Event Tracking Artists": {
+  "PEG Event Artists": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -272,11 +273,11 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Sets": "Artist",
-      "PEGS Premium Content Search Results - Sets": "Artist"
+      "PEG Event Sets": "Artist",
+      "PEG Searched Sets": "Artist"
     }
   },
-  "PEGS Event Tracking Genres": {
+  "PEG Event Genres": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -291,12 +292,12 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Events": "Genre",
-      "PEGS Event Tracking Artists": "Genre",
-      "PEGS Premium Content Search Results - Events": "Genre"
+      "PEG Events": "Genre",
+      "PEG Event Artists": "Genre",
+      "PEG Searched Events": "Genre"
     }
   },
-  "PEGS Event Tracking Types": {
+  "PEG Event Types": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -311,11 +312,11 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Events": "Type",
-      "PEGS Premium Content Search Results - Events": "Type"
+      "PEG Events": "Type",
+      "PEG Searched Events": "Type"
     }
   },
-  "PEGS Event Tracking Statuses": {
+  "PEG Event Statuses": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -330,11 +331,11 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Events": "Status",
-      "PEGS Premium Content Search Results - Events": "Status"
+      "PEG Events": "Status",
+      "PEG Searched Events": "Status"
     }
   },
-  "PEGS Event Tracking Scales": {
+  "PEG Event Scales": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -349,8 +350,8 @@
       }
     },
     "items": {
-      "PEGS Event Tracking Events": "Scale",
-      "PEGS Premium Content Search Results - Events": "Scale"
+      "PEG Events": "Scale",
+      "PEG Searched Events": "Scale"
     }
   }
 
