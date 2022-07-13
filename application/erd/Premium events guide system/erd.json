@@ -1,5 +1,5 @@
 {
-  "PEG Searches": {
+  "PEG Requests": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -15,14 +15,14 @@
       }
     },
     "items": {
-      "PEG Searched Events": "Search",
-      "PEG Transactions": "Search"
+      "PEG Requested Events": "Request",
+      "PEG Transactions": "Request"
     },
     "table_links": {
-      "Do a search": "#"
+      "Request info": "#"
     }
   },
-  "PEG Searched Events": {
+  "PEG Requested Events": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -31,11 +31,16 @@
         "Extra": "auto_increment",
         "important_field": ""
       },
-      "Search": {
+      "Request": {
         "Type": "bigint(20) unsigned"
       },
       "Event": {
         "Type": "bigint(20) unsigned"
+      },
+      "Name": {
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "important_field": ""
       },
       "Time": {
         "Type": "varchar(255)",
@@ -45,7 +50,7 @@
         "Type": "varchar(255)",
         "Null": "NO"
       },
-      "Link for more info": {
+      "Link": {
         "Type": "varchar(255)",
         "Null": "NO"
       },
@@ -66,10 +71,10 @@
       }
     },
     "items": {
-      "PEG Searched Sets": "Event"
+      "PEG Requested Sets": "Event"
     }
   },
-  "PEG Searched Sets": {
+  "PEG Requested Sets": {
     "fields": {
       "id": {
         "Type": "bigint(20) unsigned",
@@ -121,7 +126,7 @@
         "Extra": "auto_increment",
         "important_field": ""
       },
-      "Search": {
+      "Request": {
         "Type": "bigint(20) unsigned"
       },
       "Time": {
@@ -176,7 +181,8 @@
         "Type": "bigint(20) unsigned",
         "Null": "NO",
         "Key": "PRI",
-        "Extra": "auto_increment"
+        "Extra": "auto_increment",
+        "important_field": ""
       },
       "Name": {
         "Type": "varchar(100)",
@@ -186,7 +192,7 @@
     },
     "items": {
       "PEG Events": "Venue",
-      "PEG Searched Events": "Venue"
+      "PEG Requested Events": "Venue"
     }
   },
   "PEG Events": {
@@ -198,6 +204,11 @@
         "Extra": "auto_increment",
         "important_field": ""
       },
+      "Name": {
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "important_field": ""
+      },
       "Time": {
         "Type": "varchar(255)",
         "Null": "NO"
@@ -206,7 +217,7 @@
         "Type": "varchar(255)",
         "Null": "NO"
       },
-      "Link for more info": {
+      "Link": {
         "Type": "varchar(255)",
         "Null": "NO"
       },
@@ -228,7 +239,10 @@
     },
     "items": {
       "PEG Event Sets": "Event",
-      "PEG Searched Events": "Event"
+      "PEG Requested Events": "Event"
+    },
+    "table_links": {
+      "Request info": "#"
     }
   },
   "PEG Event Sets": {
@@ -248,7 +262,7 @@
       }
     },
     "items": {
-      "PEG Searched Sets": "Set"
+      "PEG Requested Sets": "Set"
     }
   },
   "PEG Event Artists": {
@@ -257,7 +271,8 @@
         "Type": "bigint(20) unsigned",
         "Null": "NO",
         "Key": "PRI",
-        "Extra": "auto_increment"
+        "Extra": "auto_increment",
+        "important_field": ""
       },
       "Name": {
         "Type": "varchar(100)",
@@ -274,7 +289,7 @@
     },
     "items": {
       "PEG Event Sets": "Artist",
-      "PEG Searched Sets": "Artist"
+      "PEG Requested Sets": "Artist"
     }
   },
   "PEG Event Genres": {
@@ -283,7 +298,8 @@
         "Type": "bigint(20) unsigned",
         "Null": "NO",
         "Key": "PRI",
-        "Extra": "auto_increment"
+        "Extra": "auto_increment",
+        "important_field": ""
       },
       "Name": {
         "Type": "varchar(100)",
@@ -294,7 +310,7 @@
     "items": {
       "PEG Events": "Genre",
       "PEG Event Artists": "Genre",
-      "PEG Searched Events": "Genre"
+      "PEG Requested Events": "Genre"
     }
   },
   "PEG Event Types": {
@@ -303,7 +319,8 @@
         "Type": "bigint(20) unsigned",
         "Null": "NO",
         "Key": "PRI",
-        "Extra": "auto_increment"
+        "Extra": "auto_increment",
+        "important_field": ""
       },
       "Name": {
         "Type": "varchar(100)",
@@ -313,7 +330,7 @@
     },
     "items": {
       "PEG Events": "Type",
-      "PEG Searched Events": "Type"
+      "PEG Requested Events": "Type"
     }
   },
   "PEG Event Statuses": {
@@ -332,7 +349,7 @@
     },
     "items": {
       "PEG Events": "Status",
-      "PEG Searched Events": "Status"
+      "PEG Requested Events": "Status"
     }
   },
   "PEG Event Scales": {
@@ -351,7 +368,7 @@
     },
     "items": {
       "PEG Events": "Scale",
-      "PEG Searched Events": "Scale"
+      "PEG Requested Events": "Scale"
     }
   }
 

@@ -150,6 +150,7 @@ foreach ($action_types as $key => $value) {
                     <div class="dropdown-menu" style="width: calc(100% - 2em); padding: 1em;">
 
                       <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+
                         <table class="table" id="<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"."_".$action_type."_".makeSafeForCSS($key); ?>records" style="width : 100%">
                           <thead>
                             <tr>
@@ -171,7 +172,7 @@ foreach ($action_types as $key => $value) {
                   <script type="text/javascript">
 
 
-                    function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"; ?>_fetch(){
+                    function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"."_".$action_type."_".makeSafeForCSS($key); ?>_fetch(){
                       $.ajax({
                         url: "<?php echo base_url(); ?>api/table/d/<?php echo $database ?>/t/<?php echo $value["rels"]["table"]; ?>/fetch",
                         type: "post",
@@ -184,6 +185,7 @@ foreach ($action_types as $key => $value) {
                               "select": true,
                               "data": data.posts,
                               "responsive": true,
+                              // "bDestroy": true,
                               dom:
                               "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
                               "<'row'<'col-sm-12'tr>>" +
@@ -236,10 +238,27 @@ foreach ($action_types as $key => $value) {
 
                     }
 
+                    setTimeout(
+                      function()
+                      {
+                        // alert(3000 + Math.random() * 3000)
 
-
-
-                    <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"; ?>_fetch();
+                        if ("test"=="test1") {
+                          var currentdate = new Date();
+                          var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                          + (currentdate.getMonth()+1)  + "/"
+                          + currentdate.getFullYear() + " @ "
+                          + currentdate.getHours() + ":"
+                          + currentdate.getMinutes() + ":"
+                          + currentdate.getSeconds();
+                          console.log(datetime)
+                        }
+                        // alert("<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"."_".$action_type."_".makeSafeForCSS($key) ?>")
+                        <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"."_".$action_type."_".makeSafeForCSS($key); ?>_fetch();
+                      },
+                      3000 + Math.random() * 3000
+                    );
+                    // <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup"."_".$action_type."_".makeSafeForCSS($key); ?>_fetch();
 
 
 
