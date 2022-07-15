@@ -405,6 +405,9 @@ $this->load->view('table_scripts_add_v', array(
 
     }
     <?php
+  } else {
+    ?>
+    <?php
   }
   ?>
 
