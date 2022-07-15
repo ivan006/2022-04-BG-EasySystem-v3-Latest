@@ -474,3 +474,11 @@ application/erd/REMAX/crud_cache/currency_exchange_rate_test.txt
 application/erd/REMAX/crud_cache/currency_exchange_rate_log_test.txt
 application/erd/REMAX/crud_cache/currency_exchange_rate_daily_test.txt
 application/erd/REMAX/crud_cache/_activity_log.txt
+application/erd/REMAX/erd.json
+application/erd/REMAX/crud_cache/relation_log.txt
+application/erd/REMAX/crud_cache/person_has_email_communication_tag.txt
+application/erd/REMAX/crud_cache/office_ranking_label.txt
+application/erd/REMAX/crud_cache/login_oauth_code.txt
+application/erd/REMAX/crud_cache/login_oauth_client_has_redirect_url.txt
+application/erd/REMAX/crud_cache/exception_log.txt
+application/erd/REMAX/crud_cache/email_communication_tag.txt
