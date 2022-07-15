@@ -430,6 +430,19 @@ class Table_page_lib
 
 						$columns = array();
 						$i = 0;
+
+						// foreach ($cols_visible["nonlinking_cols"] as $key => $value) {
+						// 	$query = $query->select("`".$table."`".'.'."`".$key."`");
+						// 	// if ($key == "id") {
+						// 	// 	// code...
+						// 	// 	$parent_link_part_1 = '<a href="/record/t/'.$table.'/r/';
+						// 	// 	$parent_link_part_2 = '" class="btn btn-sm btn-outline-primary">View</a>';
+						// 	// 	$query = $query->select("CONCAT('$parent_link_part_1', "."`".$table."`".".id, '$parent_link_part_2') as `id`");
+						// 	// }
+						//
+						// }
+						// foreach ($cols_visible["linking_cols"] as $key => $value) {
+
 						foreach ($cols_visible["g_core_abilities"]["g_select"]["editable"] as $key => $value) {
 							if (!isset($value["rels"])) {
 								$columns[] = array(

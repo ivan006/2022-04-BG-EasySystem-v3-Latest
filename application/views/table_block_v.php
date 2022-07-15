@@ -348,7 +348,7 @@ $this->load->view('table_scripts_add_v', array(
   // Fetch Records
 
   <?php
-  if ("old"=="!old") {
+  if ("old"=="old") {
     ?>
     function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch(){
       $.ajax({
