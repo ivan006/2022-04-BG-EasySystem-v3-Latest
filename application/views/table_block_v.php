@@ -212,6 +212,19 @@ foreach ($action_types as $key => $value) {
                               ]
                             } );
 
+
+
+                            // // Enumerate all rows
+                            // <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup" ?>.rows().every(function(){
+                            //   // If row has details collapsed
+                            //   if(!this.child.isShown()){
+                            //     // Expand row details
+                            //     table.settings()[0].responsive._detailsDisplay(this, false);
+                            //   }
+                            // });
+
+
+
                             var lookup_input = $("#<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_".$action_type."_".makeSafeForCSS($key); ?>");
                             <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_lookup" ?>
                             .on( 'select', function ( e, dt, type, indexes ) {
@@ -229,6 +242,8 @@ foreach ($action_types as $key => $value) {
                               // alert("<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_".$action_type."_".makeSafeForCSS($key); ?>");
                               lookup_input.val(state["<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"])."_".$action_type."_".makeSafeForCSS($key)."_"."value" ?>"]);
                             } );
+
+
                           }else{
                             toastr["error"](data.message);
                           }
@@ -348,6 +363,7 @@ $this->load->view('table_scripts_add_v', array(
   // Fetch Records
 
   <?php
+  // TODO: make ssp and parent col display not conflict
   if ("old"=="old") {
     ?>
     function <?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_fetch(){
@@ -361,7 +377,21 @@ $this->load->view('table_scripts_add_v', array(
             var i = "1";
             $('#<?php echo makeSafeForCSS($data["g_identity"]["g_ability_html_id"]); ?>_records').DataTable( {
               "data": data.posts,
-              "responsive": true,
+              responsive: {
+                <?php if ($show_hidden_details) {
+                  ?>
+                  details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    // type: 'none',
+                    // target: ''
+
+                  }
+                  <?php
+                } else {
+                  ?>
+                  <?php
+                } ?>
+              },
               dom:
               "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
               "<'row'<'col-sm-12'tr>>" +

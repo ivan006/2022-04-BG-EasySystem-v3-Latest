@@ -119,6 +119,7 @@ class Record_c extends CI_Controller
 				"permisssion_options"=>$permisssion_options,
 				"type"=>"g_record_core_abilities",
 				"database"=>$database,
+				"show_hidden_details"=>true,
 			));
 
 
@@ -132,13 +133,15 @@ class Record_c extends CI_Controller
 					$this->load->view('table_block_v', array(
 						"data"=>$value,
 						"permisssion_options"=>$permisssion_options,
-						"type"=>"g_record_parental_abilities"
+						"type"=>"g_record_parental_abilities",
+						"show_hidden_details"=>false,
 					));
 				}
 			}
 			$this->load->view('table_footer_v', array("data"=>$data));
 
-		} else {
+		}
+		else {
 			echo "No such record.";
 		}
 

@@ -113,7 +113,8 @@ class Table_c extends CI_Controller
 		$this->load->view('table_block_v', array(
 			"data"=>$data["g_core_abilities"],
 			"permisssion_options"=>$permisssion_options,
-			"type"=>"g_table_core_abilities"
+			"type"=>"g_table_core_abilities",
+			"show_hidden_details"=>false,
 		));
 		$this->load->view('table_footer_v', array("data"=>$data));
 
