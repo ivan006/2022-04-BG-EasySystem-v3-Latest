@@ -1,5 +1,5 @@
 {
-  "DMS Topics":{
+  "DMS Concern categories":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
@@ -14,10 +14,10 @@
       }
     },
     "items":{
-      "DMS Questions":"DMS Topic"
+      "DMS Concerns":"Concern category"
     }
   },
-  "DMS Questions":{
+  "DMS Concerns":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
@@ -30,7 +30,7 @@
         "Null":"NO",
         "important_field":""
       },
-      "DMS Topic":{
+      "Concern category":{
         "Type":"bigint(20) unsigned"
       },
       "user":{
@@ -38,10 +38,10 @@
       }
     },
     "items":{
-      "DMS Answers":"DMS Question"
+      "DMS Concern comments":"Concern"
     }
   },
-  "DMS Answers":{
+  "DMS Concern comments":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
@@ -54,7 +54,7 @@
         "Null":"NO",
         "important_field":""
       },
-      "DMS Question":{
+      "Concern":{
         "Type":"bigint(20) unsigned"
       },
       "user":{
@@ -62,10 +62,10 @@
       }
     },
     "items":{
-      "DMS Comments":"DMS Answer"
+      "DMS Concern subcomments":"Comment"
     }
   },
-  "DMS Comments":{
+  "DMS Concern subcomments":{
     "fields":{
       "id":{
         "Type":"bigint(20) unsigned",
@@ -79,7 +79,7 @@
         "Null":"NO",
         "important_field":""
       },
-      "DMS Answer":{
+      "Comment":{
         "Type":"bigint(20) unsigned"
       },
       "user":{
@@ -138,9 +138,9 @@
     },
     "items":{
       "users_groups":"user_id",
-      "DMS Questions":"user",
-      "DMS Answers":"user",
-      "DMS Comments":"user"
+      "DMS Concerns":"user",
+      "DMS Concern comments":"user",
+      "DMS Concern subcomments":"user"
     }
   },
   "users_groups":{
