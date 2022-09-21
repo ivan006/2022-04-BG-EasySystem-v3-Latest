@@ -1,4 +1,22 @@
 {
+  "DMS Concern statuses":{
+    "fields":{
+      "id":{
+        "Type":"bigint(20) unsigned",
+        "Null":"NO",
+        "Key":"PRI",
+        "Extra":"auto_increment"
+      },
+      "Description":{
+        "Type":"varchar(255)",
+        "Null":"NO",
+        "important_field":""
+      }
+    },
+    "items":{
+      "DMS Concerns":"Concern status"
+    }
+  },
   "DMS Concern categories":{
     "fields":{
       "id":{
@@ -28,11 +46,18 @@
         "important_field":""
       },
       "Description":{
-        "Type":"varchar(255)",
+        "Type": "text",
         "Null":"NO",
         "important_field":""
       },
+      "Due date":{
+        "Type": "text",
+        "Null":"NO"
+      },
       "Concern category":{
+        "Type":"bigint(20) unsigned"
+      },
+      "Concern status":{
         "Type":"bigint(20) unsigned"
       },
       "user":{
