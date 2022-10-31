@@ -484,3 +484,4 @@ application/erd/REMAX/crud_cache/exception_log.txt
 application/erd/REMAX/crud_cache/email_communication_tag.txt
 application/erd/Genex/erd.json
 application/erd/Private_ERDs/
+.vscode/sftp.json
