@@ -482,3 +482,4 @@ application/erd/REMAX/crud_cache/login_oauth_code.txt
 application/erd/REMAX/crud_cache/login_oauth_client_has_redirect_url.txt
 application/erd/REMAX/crud_cache/exception_log.txt
 application/erd/REMAX/crud_cache/email_communication_tag.txt
+application/erd/Genex/erd.json
