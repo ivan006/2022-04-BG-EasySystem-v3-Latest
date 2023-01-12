@@ -77,6 +77,10 @@
           <a href="/databases" class="btn btn-sm btn-outline-primary">
             Databases
           </a>
+
+			<a href="/auth/login" class="btn btn-sm btn-outline-primary">
+				Login
+			</a>
         </div>
         <div class="col-md-2 col-6 mt-5">
           <?php
