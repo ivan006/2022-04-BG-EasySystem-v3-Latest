@@ -1286,6 +1286,17 @@ class Table_page_lib
 		if (!$this->CI->ion_auth->logged_in())
 		{
 
+
+
+			$query_result = $this->CI->db->select('*')->from("groups")->get()->result_array();
+
+
+
+			return $query_result;
+		} else {
+
+
+
 			$sql="WITH RECURSIVE q AS
 			(
 				SELECT  id,name,description,group_id,CONCAT(id) as path
@@ -1319,15 +1330,6 @@ class Table_page_lib
 				}
 			}
 			return $result;
-		} else {
-
-
-
-		$query_result = $this->CI->db->select('*')->from("groups")->get()->result_array();
-
-
-
-		return $query_result;
 		}
 
 	}
