@@ -42,6 +42,6 @@ system/libraries/Session/drivers/Session_files_driver_new.php
 
 
 application/erd/REMAX/*
-application/erd/Genex/erd.json
+application/erd/Genex/*
 application/erd/Private_ERDs/
 .vscode/sftp.json
