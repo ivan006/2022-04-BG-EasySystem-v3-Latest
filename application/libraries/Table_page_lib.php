@@ -1282,39 +1282,53 @@ class Table_page_lib
 		// //echo $this->db->last_query();
 		// return $result->row();
 
-		$sql="WITH RECURSIVE q AS
-		(
-			SELECT  id,name,description,group_id,CONCAT(id) as path
-			FROM    groups
-			WHERE   group_id = 0
-			UNION ALL
-			SELECT  m.id,m.name,m.description,m.group_id,CONCAT(q.path,'-',m.id) as path
-			FROM    groups m
-			JOIN    q
-			ON      m.group_id = q.id
-			)
-			SELECT  *
-			FROM    q
-		";
 
-		$query_result = $this->CI->db->query($sql)->result_array();
+		if (!$this->CI->ion_auth->logged_in())
+		{
 
-		// chaneg to $config['tables']['users_groups'] ?
-		$table = "users_groups";
-		$haystack = "user_id";
-		$needle = $this->CI->ion_auth->get_user_id();
-		$user_group_links = $this->fetch_where($table, $haystack, $needle)["posts"];
+			$sql="WITH RECURSIVE q AS
+			(
+				SELECT  id,name,description,group_id,CONCAT(id) as path
+				FROM    groups
+				WHERE   group_id = 0
+				UNION ALL
+				SELECT  m.id,m.name,m.description,m.group_id,CONCAT(q.path,'-',m.id) as path
+				FROM    groups m
+				JOIN    q
+				ON      m.group_id = q.id
+				)
+				SELECT  *
+				FROM    q
+			";
 
-		$user_group_ids = array_column($user_group_links, "group_id");
+			$query_result = $this->CI->db->query($sql)->result_array();
 
-		$result = array();
-		foreach ($query_result as $key => $value) {
-			$matches = array_intersect($user_group_ids,explode("-",$value["path"]));
-			if (!empty($matches)) {
-				$result[$key] = $value;
+			// chaneg to $config['tables']['users_groups'] ?
+			$table = "users_groups";
+			$haystack = "user_id";
+			$needle = $this->CI->ion_auth->get_user_id();
+			$user_group_links = $this->fetch_where($table, $haystack, $needle)["posts"];
+
+			$user_group_ids = array_column($user_group_links, "group_id");
+
+			$result = array();
+			foreach ($query_result as $key => $value) {
+				$matches = array_intersect($user_group_ids,explode("-",$value["path"]));
+				if (!empty($matches)) {
+					$result[$key] = $value;
+				}
 			}
+			return $result;
+		} else {
+
+
+
+		$query_result = $this->CI->db->select('*')->from("groups")->get()->result_array();
+
+
+
+		return $query_result;
 		}
-		return $result;
 
 	}
 
