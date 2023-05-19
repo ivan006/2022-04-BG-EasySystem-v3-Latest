@@ -1,7 +1,7 @@
 {
     "table_name": "CCS Transactions",
     "table_name_singular": "CCS Transaction",
-    "table_exists": 1,
+    "table_exists": 0,
     "g_core_abilities": {
         "g_identity": {
             "g_ability_name": "CCS Transactions",
@@ -128,17 +128,17 @@
                     "Type": "varchar(255)",
                     "Null": "NO"
                 },
-                "CCS People - Name": {
+                "Person - Name": {
                     "Type": "varchar(100)",
                     "Null": "NO",
                     "important_field": ""
                 },
-                "CCS Products - Name": {
+                "Product - Name": {
                     "Type": "varchar(100)",
                     "Null": "NO",
                     "important_field": ""
                 },
-                "CCS Procedures - Name": {
+                "Procedure - Name": {
                     "Type": "varchar(100)",
                     "Null": "NO",
                     "important_field": ""

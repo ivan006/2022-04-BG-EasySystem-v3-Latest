@@ -1,12 +1,12 @@
 {
-    "table_name": "CCS People",
-    "table_name_singular": "CCS People",
+    "table_name": "CCS Procedures",
+    "table_name_singular": "CCS Procedure",
     "table_exists": 0,
     "g_core_abilities": {
         "g_identity": {
-            "g_ability_name": "CCS People",
-            "g_ability_html_id": "ccspeople",
-            "g_from": "CCS People",
+            "g_ability_name": "CCS Procedures",
+            "g_ability_html_id": "ccsprocedures",
+            "g_from": "CCS Procedures",
             "g_where_haystack": "id",
             "g_where_haystack_type": "foreign_key",
             "data_endpoint": "fetch_for_record\/h_type\/primary_key\/h\/id\/n\/"
@@ -47,12 +47,12 @@
     "g_parental_abilities": {
         "CCS Transactions": {
             "g_identity": {
-                "g_ability_name": "CCS Transactions (as Person)",
-                "g_ability_html_id": "ccstransactionsasperson",
+                "g_ability_name": "CCS Transactions (as Procedure)",
+                "g_ability_html_id": "ccstransactionsasprocedure",
                 "g_from": "CCS Transactions",
-                "g_where_haystack": "Person",
+                "g_where_haystack": "Procedure",
                 "g_where_haystack_type": "foreign_key",
-                "data_endpoint": "fetch_for_record\/h_type\/foreign_key\/h\/Person\/n\/"
+                "data_endpoint": "fetch_for_record\/h_type\/foreign_key\/h\/Procedure\/n\/"
             }
         }
     }
